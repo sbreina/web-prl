@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>
+  <meta name="description" content="Protege tu bar ante la Inspección de Trabajo. Software de autogestión de Prevención de Riesgos Laborales para hostelería conforme al Art. 11 del RD 39/1997.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: #121620;
+      --card-border: #1e2638;
+      --card-hover: #263147;
+      --accent: #2563eb;
+      --accent-glow: rgba(37, 99, 235, 0.35);
+      --accent-light: #60a5fa;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 11, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .logo-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(9, 11, 16, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3.1rem;
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span.gradient {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: 1.18rem;
+      color: var(--text-sub);
+      max-width: 780px;
+      margin: 0 auto 34px;
+      line-height: 1.7;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
+    .hero-badges span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-badges span svg {
+      color: var(--success);
+    }
+
+    /* Problem / Urgency Section (Cold Shower) */
+    .section-urgency {
+      padding: 70px 0;
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.04) 0%, rgba(9, 11, 16, 0) 100%);
+      border-top: 1px solid rgba(239, 68, 68, 0.15);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .section-title {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 50px;
+    }
+    .section-title .badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+      background: rgba(37, 99, 235, 0.12);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .section-title h2 {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-size: 1rem;
+    }
+
+    .myths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .myth-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 30px 24px;
+      position: relative;
+      transition: border-color 0.25s ease;
+    }
+    .myth-card:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+    .myth-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .myth-pill {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+    .myth-card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      color: #fca5a5;
+    }
+    .myth-card p.reality {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .reality-tag {
+      font-weight: 700;
+      color: var(--success);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    /* Features / The Solution */
+    .features-section {
+      padding: 90px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px 30px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .feature-points {
+      margin-top: 16px;
+      list-style: none;
+    }
+    .feature-points li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .feature-points li svg {
+      color: var(--accent-light);
+      flex-shrink: 0;
+    }
+
+    /* Comparison Table */
+    .compare-section {
+      padding: 80px 0;
+      background: #0d1017;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .compare-table th, .compare-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.92rem;
+    }
+    .compare-table th {
+      background: #161b26;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .compare-table th.highlight {
+      background: rgba(37, 99, 235, 0.2);
+      color: #93c5fd;
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+    .compare-table td.highlight {
+      background: rgba(37, 99, 235, 0.05);
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+      font-weight: 600;
+      color: #93c5fd;
+    }
+    .status-check { color: var(--success); font-weight: 700; }
+    .status-cross { color: var(--danger); font-weight: 700; }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 90px 0;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 40px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+    }
+    .pricing-card.featured::before {
+      content: 'MÁS POPULAR · CENTRO ÚNICO';
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+    .pricing-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+    }
+    .pricing-card p.desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 8px 0 24px;
+    }
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      margin-bottom: 6px;
+    }
+    .pricing-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 28px 0 34px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .pricing-features li svg {
+      color: var(--success);
+      flex-shrink: 0;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--card-border);
+    }
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover {
+      border-color: var(--card-hover);
+    }
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 90px 0;
+      background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.2) 0%, rgba(9, 11, 16, 1) 70%);
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      color: var(--text-sub);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 36px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0 30px;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      text-align: center;
+    }
+    footer a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 2.3rem; }
+      .myths-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        PrevHostel <span class="logo-badge">Hostelería 100% Legal</span>
+      </a>
+      <div class="nav-links">
+        <a href="#urgencia">¿Por qué tú?</a>
+        <a href="#solucion">La Solución</a>
+        <a href="#comparativa">Comparativa</a>
+        <a href="#precios">Planes</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <a href="#precios" class="btn btn-primary">Empezar Ahora</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-tag">
+        ⚠️ Aviso Legal Inmediato (Art. 11 RD 39/1997)
+      </div>
+      <h1>El responsable penal de la PRL en tu bar <span class="gradient">eres TÚ</span>. No tu gestoría.</h1>
+      <p class="lead">
+        Si un camarero se resbala o un cocinero se quema con la freidora, la Inspección de Trabajo y el Código Penal te investigarán a ti como titular. <strong>PrevHostel</strong> es la primera plataforma de autogestión guiada que blinda tu bar en 15 minutos, sin pagar 1.200 € al año a un SPA.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#precios" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
+          Autogestionar mi Bar en 15 Minutos →
+        </a>
+        <a href="#urgencia" class="btn btn-secondary" style="padding: 16px 28px;">
+          Ver Qué Exige la Inspección
+        </a>
+      </div>
+      <div class="hero-badges">
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Hasta 25 trabajadores (Centro único)
+        </span>
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Notificación formal de exención de auditoría
+        </span>
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Firma táctil de EPIs en móvil
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Reality Check (The Need Creator) -->
+  <section class="section-urgency" id="urgencia">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Realidad Inspectora</span>
+        <h2>Las 3 falsas seguridades que le cuestan el negocio a un hostelero</h2>
+        <p>El 87% de los bares y restaurantes sancionados creían que "lo tenían todo cubierto". La realidad jurídica es tajante:</p>
+      </div>
+
+      <div class="myths-grid">
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #1</span>
+          </div>
+          <h3>"Mi gestoría laboral me lleva todos los papeles"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            Las gestorías gestionan nóminas e impuestos, pero <strong>no son un Servicio de Prevención</strong>. La Ley de Prevención (LPRL) prohíbe que un gestor asuma tu seguridad laboral. Si hay una inspección, tu gestoría no responde: la multa recae sobre tu CIF y tu patrimonio personal.
+          </p>
+        </div>
+
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #2</span>
+          </div>
+          <h3>"Firmé un contrato con un SPA hace años y ya está"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            Tener una carpeta olvidada en el despacho no te salva. Si no demuestras la <strong>entrega física y firmada de EPIs</strong> a cada trabajador que entra, o si cambiaste de freidora o máquina y no actualizaste el documento, la Inspección lo considera <em>infracción grave</em> (desde 2.451 € a 49.180 €).
+          </p>
+        </div>
+
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #3</span>
+          </div>
+          <h3>"Un bar pequeño no tiene derecho a autogestionarse"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            <strong>Es totalmente falso.</strong> El Real Decreto 39/1997 faculta al empresario con curso básico a asumir personalmente la prevención hasta 25 empleados en centro único. Los SPAs tradicionales te cobran cuotas anuales desorbitadas por un documento estándar que tú mismo puedes autogestionar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Solution -->
+  <section class="features-section" id="solucion">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Autogestión Completa</span>
+        <h2>Todo lo que exige la Inspección de Trabajo en un solo lugar</h2>
+        <p>PrevHostel guía al titular paso a paso para generar, firmar y mantener en regla su sistema preventivo sin intermediarios costosos.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Evaluación EVL y Medidas de Emergencia (INSST)</h3>
+          <p>Cuestionario guiado por equipamiento real de cocina (freidoras, planchas, cortadoras, gas, campanas). Matriz técnica de riesgos P×G y medidas concretas conforme a los estándares oficiales del Instituto Nacional de Seguridad y Salud en el Trabajo.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Redacción en primera persona bajo asunción legal del titular.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Plan de emergencias, vías de evacuación y conato en cocina.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3>Libro Digital de EPIs con Firma Táctil en Móvil</h3>
+          <p>El punto flaco de cualquier bar ante una inspección es la falta de recibos de EPIs. PrevHostel te permite elegir al trabajador y que firme con el dedo en la pantalla la entrega del calzado antideslizante o guantes térmicos al instante.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Firma manuscrita digitalizada con fecha y hora exacta.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Impresión en 1 clic del Libro Oficial de Entrega de EPIs.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Coordinación CAE para Reparto y Técnicos (QR)</h3>
+          <p>Si el repartidor de barriles de cerveza o el técnico que limpia la campana extractora sufren un accidente en tu local, tienes responsabilidad civil subsidiaria salvo que acredites la Coordinación de Actividades Empresariales (Art. 24 LPRL).</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Ficha A4 para fijar en barra o zona de descarga con código QR.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Exención de responsabilidad por imprudencia de terceros.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3>Trámite Oficial: Exención de Auditoría ante la CCAA</h3>
+          <p>Las empresas que autogestionan la PRL están obligadas a notificar formalmente la exención de auditoría a la Dirección General de Trabajo de su Comunidad Autónoma. PrevHostel genera la solicitud administrativa redactada lista para registro.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Fundamentada en el Art. 29 y Anexo II del RD 39/1997.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Evita la sanción por carecer de auditoría periódica obligatoria.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="compare-section" id="comparativa">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Comparativa Real</span>
+        <h2>¿Por qué seguir atado a un Servicio de Prevención tradicional?</h2>
+        <p>Compara el modelo obsoleto de los grandes SPAs frente a la autogestión legal moderna.</p>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Característica / Obligación</th>
+              <th>SPA Tradicional</th>
+              <th>No hacer nada (Riesgo)</th>
+              <th class="highlight">PrevHostel (Autogestión)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coste anual aproximado</td>
+              <td>800 € – 1.400 € / año</td>
+              <td>0 € (hasta la multa de 40.000 €)</td>
+              <td class="highlight"><strong>Desde 79 € / año</strong></td>
+            </tr>
+            <tr>
+              <td>Validez legal ante la ITSS</td>
+              <td><span class="status-check">✓ Sí</span></td>
+              <td><span class="status-cross">✗ Ilegal</span></td>
+              <td class="highlight"><span class="status-check">✓ 100% Legal (Art. 11 RD 39/97)</span></td>
+            </tr>
+            <tr>
+              <td>Firma de EPIs en tiempo real con camareros</td>
+              <td><span class="status-cross">✗ En papel perdido</span></td>
+              <td><span class="status-cross">✗ Inexistente</span></td>
+              <td class="highlight"><span class="status-check">✓ En pantalla móvil al instante</span></td>
+            </tr>
+            <tr>
+              <td>Ficha CAE para repartidores de cerveza/fresco</td>
+              <td><span class="status-cross">✗ Te cobran extra</span></td>
+              <td><span class="status-cross">✗ Inexistente</span></td>
+              <td class="highlight"><span class="status-check">✓ Incluida con cartel y QR</span></td>
+            </tr>
+            <tr>
+              <td>Notificación de exención de auditoría redactada</td>
+              <td><span class="status-cross">✗ Rara vez la tramitan</span></td>
+              <td><span class="status-cross">✗ Sanción grave</span></td>
+              <td class="highlight"><span class="status-check">✓ Redactada lista para sede electrónica</span></td>
+            </tr>
+            <tr>
+              <td>Tiempo necesario del hostelero</td>
+              <td>Soportar visitas lentas y papeles</td>
+              <td>0 min (hasta el juzgado)</td>
+              <td class="highlight"><strong>15 minutos desde el móvil</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="precios">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Inversión Mínima</span>
+        <h2>Un año de tranquilidad legal por menos de lo que cuesta una cena</h2>
+        <p>Sin permanencias ocultas. Acceso inmediato a la plataforma para generar tu pack hoy mismo.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan Micro -->
+        <div class="pricing-card">
+          <div>
+            <h3>Microhostelería</h3>
+            <p class="desc">Para bares, cafeterías y pequeños locales con menos de 10 trabajadores.</p>
+            <div class="pricing-price">79 € <span>/ año</span></div>
+            <ul class="pricing-features">
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Generador EVL oficial y Emergencias</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Libro Digital de EPIs con firma en pantalla</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cartelería y ficha CAE para repartidores</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Notificación oficial exención de auditoría</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Calendario de vencimientos de extintores y campana</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-secondary" style="width: 100%;">Elegir Plan Micro</a>
+        </div>
+
+        <!-- Plan Pyme -->
+        <div class="pricing-card featured">
+          <div>
+            <h3>Pyme Hostelería</h3>
+            <p class="desc">Para restaurantes, asadores o locales con entre 10 y 25 empleados en centro único.</p>
+            <div class="pricing-price">129 € <span>/ año</span></div>
+            <ul class="pricing-features">
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> <strong>Todo lo del Plan Micro incluido</strong></li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Habilitado legalmente hasta 25 empleados (Art. 11)</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Módulo de turnos rotativos, noche y picos de servicio</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Plan de formación teórica específica por puesto (Art. 19)</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Actualizaciones normativas automáticas todo el año</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary" style="width: 100%;">Elegir Plan Pyme</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Respuestas Claras</span>
+        <h2>Preguntas Frecuentes de Hosteleros</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">¿Es 100% legal que yo me haga mi propia prevención de riesgos?</div>
+          <div class="faq-answer">
+            Sí, con total respaldo del <strong>artículo 11 del Real Decreto 39/1997</strong> y la Ley 31/1995. La hostelería no es una actividad de especial peligrosidad (no está en el Anexo I). Puedes asumir personalmente la gestión si tienes hasta 10 trabajadores (o hasta 25 si es un único local), trabajas habitualmente en él y cuentas con el curso básico de PRL (30h/50h).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Y qué pasa con los reconocimientos médicos de mis camareros?</div>
+          <div class="faq-answer">
+            La ley exige que la <strong>Vigilancia de la Salud</strong> la preste obligatoriamente un Servicio de Prevención Ajeno (SPA) con médicos del trabajo acreditados. Con PrevHostel autogestionas toda la parte técnica (ahorrándote cientos de euros) y sólo necesitas contratar con un SPA un concierto parcial exclusivamente médico (mucho más económico).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Qué pasa si mañana entra un Inspector de Trabajo a mi bar?</div>
+          <div class="faq-answer">
+            Tendrás en tu ordenador o impreso en barra el pack documental completo: la Evaluación de Riesgos firmada por ti como titular, el Plan de Medidas de Emergencia, el justificante de exención de auditoría y, lo más importante, el <strong>Libro de entrega de EPIs con las firmas digitales de tus empleados</strong>. Estarás mejor documentado que el 90% de los locales que pagan a un SPA y tienen los papeles caducados.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Cuánto tiempo tardo en tener los papeles listos?</div>
+          <div class="faq-answer">
+            Aproximadamente 15 minutos. El sistema te hace preguntas muy simples sobre la maquinaria que tienes (freidora, cortadora, gas, cámaras frigoríficas, terraza) y genera automáticamente toda la documentación técnica sin tecnicismos innecesarios.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>No esperes a que un cocinero se queme para revisar tus papeles</h2>
+      <p>Blinda tu establecimiento hoy mismo y duerme tranquilo sabiendo que cumples con la ley ante cualquier inspección o siniestro.</p>
+      <a href="#precios" class="btn btn-primary" style="padding: 18px 42px; font-size: 1.1rem;">
+        Empezar la Autogestión de mi Bar Ahora →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 8px;"><strong>PrevHostel</strong> · Tecnología de autogestión técnica en prevención de riesgos laborales para el sector hostelero español.</p>
+      <p>Cumplimiento estricto conforme a la Ley 31/1995 de PRL y Real Decreto 39/1997. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
