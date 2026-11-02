@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevHostel Cloud Engine · Autogestión PRL Hostelería</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .tab-active { border-color: #3b82f6; color: #60a5fa; background-color: rgba(59, 130, 246, 0.1); }
+    .doc-tab-active { background-color: #1e3a8a; color: #93c5fd; border-bottom: 2px solid #60a5fa; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Encabezado Principal -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-3">
+          <i class="fa-solid fa-shield-halved text-blue-500"></i>
+          Autogestión <span class="text-blue-500">PRL Hostelería</span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-0.5">Plataforma técnica guiada · Asunción Personal por el Empresario (Art. 11 RD 39/1997)</p>
+      </div>
+
+      <!-- Barra de Estado de Licencia -->
+      <div id="licenseBadge" class="flex items-center gap-3 bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-lg text-xs">
+        <span class="flex items-center gap-1.5 text-amber-400 font-medium">
+          <i class="fa-solid fa-lock"></i>
+          <span id="licenseStatusText">Licencia: Sin activar (---)</span>
+        </span>
+        <span class="text-slate-500">|</span>
+        <span class="text-slate-300">Cuota: <strong id="quotaText" class="text-white">---</strong></span>
+        <button onclick="toggleModal('modalLicencia')" class="text-blue-400 hover:text-blue-300 underline font-semibold ml-1">Abrir Licencia</button>
+        <button onclick="desvincularLicencia()" class="text-slate-500 hover:text-rose-400 ml-1" title="Desvincular"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra de Configuración de Servidor Nube -->
+  <section class="max-w-7xl mx-auto px-4 py-3 border-b border-slate-800/60 bg-slate-900/30">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center text-xs">
+      <div class="md:col-span-3">
+        <label class="block text-slate-400 font-semibold mb-1">SERVICIO DE REDACCIÓN IA</label>
+        <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-200">
+          <i class="fa-solid fa-bolt text-amber-400"></i>
+          <span>Servidor Oficial PrevHostel (Nube)</span>
+        </div>
+      </div>
+
+      <div class="md:col-span-6">
+        <label class="block text-slate-400 font-semibold mb-1">URL DEL SERVIDOR SEGURO (VERCEL CLOUD ENGINE)</label>
+        <div class="relative">
+          <input type="text" id="serverUrl" value="https://prevhostel-api.vercel.app" 
+                 class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 font-mono text-xs focus:outline-none focus:border-blue-500">
+          <span class="absolute right-2.5 top-1.5 text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-check"></i> Clave IA protegida en servidor
+          </span>
+        </div>
+      </div>
+
+      <div class="md:col-span-3 flex items-end gap-2 pt-4 md:pt-0">
+        <span id="connectionBadge" class="hidden px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full"></span>
+          <span id="connectionBadgeText"></span>
+        </span>
+        <button onclick="verificarConexion()" id="btnVerificar" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium px-3 py-1.5 rounded-lg transition text-xs flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-network-wired"></i> Verificar conexión
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pestañas Principales (Pasos 1 a 6) -->
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    <nav class="flex border-b border-slate-800 gap-1 overflow-x-auto pb-px mb-6">
+      <button onclick="switchStep(1)" id="stepTab-1" class="step-btn tab-active px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center text-xs font-bold">1</span>
+        Empresa
+      </button>
+      <button onclick="switchStep(2)" id="stepTab-2" class="step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">2</span>
+        Puestos
+      </button>
+      <button onclick="switchStep(3)" id="stepTab-3" class="step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">3</span>
+        Instalaciones
+      </button>
+      <button onclick="switchStep(4)" id="stepTab-4" class="step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">4</span>
+        Riesgos
+      </button>
+      <button onclick="switchStep(5)" id="stepTab-5" class="step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">5</span>
+        Alcance
+      </button>
+      <button onclick="switchStep(6)" id="stepTab-6" class="step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs font-bold">6</span>
+        Generar
+      </button>
+    </nav>
+
+    <!-- PASO 1: DATOS DE LA EMPRESA -->
+    <div id="step-1" class="step-content space-y-6">
+      <!-- BANNER COMERCIAL: ASISTENCIA TÉCNICA IN SITU -->
+      <div class="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border border-blue-500/40 rounded-xl p-5 mb-2 shadow-lg relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
+          <div class="space-y-1.5 max-w-2xl">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                <i class="fa-solid fa-user-tie mr-1"></i> Asistencia Técnica Presencial
+              </span>
+              <span class="text-amber-400 text-xs font-semibold">
+                <i class="fa-solid fa-tag mr-1"></i> 60 € / hora + desplazamiento
+              </span>
+            </div>
+            <h3 class="text-base font-bold text-white">¿Prefieres que un técnico se desplace a tu establecimiento a completar los datos?</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Nos desplazamos directamente a tu restaurante, bar o cafetería para inspeccionar las instalaciones (cocina, gas, campanas, freidoras, salidas), completar todos los apartados contigo y dejarte el expediente técnico oficial de 11 documentos listo para su firma.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2 shrink-0 w-full md:w-auto">
+            <button onclick="solicitarAsistenciaTecnica('whatsapp')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-4 py-2.5 rounded-lg text-xs transition flex items-center justify-center gap-2 shadow-sm">
+              <i class="fa-brands fa-whatsapp text-sm"></i> Solicitar por WhatsApp
+            </button>
+            <button onclick="toggleModal('modalServicioInSitu')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium px-3.5 py-2.5 rounded-lg text-xs transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info text-blue-400"></i> Ver detalles
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <i class="fa-solid fa-building text-blue-400"></i> Datos de la empresa
+            <span class="text-xs bg-blue-500/20 text-blue-400 font-medium px-2 py-0.5 rounded">Obligatorio</span>
+          </h2>
+          <button onclick="cargarEjemplo()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded border border-slate-700 transition">
+            <i class="fa-solid fa-magic-wand-sparkles mr-1 text-amber-400"></i> Cargar ejemplo (Restaurante de Ana)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Razón social</label>
+            <input type="text" id="razonSocial" placeholder="Ej: Restaurante La Cocina de Ana S.L." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">CIF / NIF</label>
+            <input type="text" id="cif" placeholder="B-87654321" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono uppercase">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Actividad / CNAE</label>
+            <select id="cnae" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+              <option value="5610 - Restaurantes y puestos de comidas">5610 — Restaurantes y puestos de comidas</option>
+              <option value="5630 - Establecimientos de bebidas (Bares, Cafeterías)">5630 — Establecimientos de bebidas (Bares/Cafeterías)</option>
+              <option value="5621 - Provisión de comidas preparadas para eventos (Catering)">5621 — Catering y colectividades</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Dirección del centro de trabajo</label>
+            <input type="text" id="direccion" placeholder="C/ Mayor 25" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Municipio y Provincia</label>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" id="municipio" placeholder="Madrid" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+              <input type="text" id="provincia" placeholder="Madrid" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Superficie útil (m²) y Plantas</label>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="number" id="superficie" placeholder="280" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+              <input type="number" id="plantas" placeholder="2" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Nombre del Empresario Asuntor (Titular)</label>
+            <input type="text" id="titular" placeholder="Ana Martínez Ruiz" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Formación en Prevención del Titular (RD 39/1997)</label>
+            <select id="formacionTitular" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white">
+              <option value="Nivel Básico en Prevención de Riesgos Laborales (50 horas - Hostelería)">Nivel Básico PRL (50 h - Hostelería reglamentario)</option>
+              <option value="Nivel Básico en Prevención de Riesgos Laborales (30 horas)">Nivel Básico PRL (30 horas)</option>
+              <option value="Técnico Intermedio / Superior en PRL">Técnico Intermedio / Superior en PRL</option>
+            </select>
+          </div>
+
+          <!-- CAMPO SPA CONCERTADO CON ADVERTENCIA LEGAL Y PERMISO DE DEJAR EN BLANCO -->
+          <div class="md:col-span-2 bg-slate-950/60 border border-slate-800 rounded-xl p-4 mt-2">
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="empresaSpa" class="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-user-doctor text-emerald-400"></i>
+                SPA concertado para Medicina del Trabajo / Vigilancia de la Salud (Art. 22 LPRL)
+              </label>
+              <span class="text-xs bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded font-medium">Opcional en borrador</span>
+            </div>
+            <input type="text" id="empresaSpa" placeholder="Ej: Quirónprevención / Cualtis / Previsur (dejar en blanco si está en trámite)" 
+                   class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500">
+            <div class="mt-2.5 flex items-start gap-2 text-xs text-slate-400 bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+              <i class="fa-solid fa-circle-info text-amber-400 mt-0.5 text-sm"></i>
+              <div class="space-y-1">
+                <p>
+                  <strong class="text-slate-200">Régimen legal del Art. 11.2 RD 39/1997:</strong> La Medicina Laboral <u>no puede ser asumida personalmente por el hostelero</u>. Requiere personal sanitario colegiado (médico del trabajo y enfermero).
+                </p>
+                <p class="text-slate-400">
+                  <strong class="text-amber-400">Si se deja en blanco:</strong> El sistema redactará automáticamente la <strong>declaración informativa preceptiva y compromiso formal de concierto</strong>, fundamentando el deber inexcusable del empresario de realizar el <em>ofrecimiento formal escrito</em> a la plantilla (Art. 22 LPRL) e integrando el <strong>modelo de ofrecimiento y renuncia voluntaria</strong> para su firma y archivo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button onclick="switchStep(2)" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          Siguiente: Puestos y Plantilla <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 2: PUESTOS -->
+    <div id="step-2" class="step-content hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <h2 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-users text-blue-400"></i> Puestos y dotación de plantilla
+        </h2>
+        <p class="text-xs text-slate-400 mb-4">Indica el número de trabajadores en cada puesto representativo (límite legal de asunción: hasta 10 trabajadores o hasta 25 con un único centro).</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+            <label class="block font-semibold text-slate-200 mb-1">Cocina (Cocineros / Ayudantes)</label>
+            <input type="number" id="puestosCocina" value="3" min="0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+            <span class="text-[11px] text-slate-400 mt-1 block">Quemaduras, cortes, bipedestación, calor.</span>
+          </div>
+          <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+            <label class="block font-semibold text-slate-200 mb-1">Sala / Barra (Camareros)</label>
+            <input type="number" id="puestosSala" value="4" min="0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+            <span class="text-[11px] text-slate-400 mt-1 block">Caídas, sobreesfuerzos, bipedestación continua.</span>
+          </div>
+          <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+            <label class="block font-semibold text-slate-200 mb-1">Office / Limpieza</label>
+            <input type="number" id="puestosOffice" value="1" min="0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+            <span class="text-[11px] text-slate-400 mt-1 block">Contacto con químicos cáusticos, suelos mojados.</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <button onclick="switchStep(1)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+        <button onclick="switchStep(3)" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          Siguiente: Instalaciones <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 3: INSTALACIONES -->
+    <div id="step-3" class="step-content hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <h2 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-fire-burner text-blue-400"></i> Instalaciones y Equipamiento Crítico
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instGas" checked class="rounded text-blue-600">
+            <span>Cocina central con instalación de gas natural / GLP</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instFreidoras" checked class="rounded text-blue-600">
+            <span>Batería de freidoras y planchas de alta temperatura</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instCampana" checked class="rounded text-blue-600">
+            <span>Campana extractora industrial con extinción automática</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instCamaras" checked class="rounded text-blue-600">
+            <span>Cámaras frigoríficas y de congelación (sistema antipánico)</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instMontaplatos" class="rounded text-blue-600">
+            <span>Montaplatos o elevador entre plantas</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="instTerraza" checked class="rounded text-blue-600">
+            <span>Terraza exterior en vía pública</span>
+          </label>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <button onclick="switchStep(2)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+        <button onclick="switchStep(4)" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          Siguiente: Evaluación de Riesgos <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 4: RIESGOS -->
+    <div id="step-4" class="step-content hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <h2 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-triangle-exclamation text-blue-400"></i> Factores de Riesgo Específicos
+        </h2>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="rCortes" checked class="rounded text-blue-600">
+            <span>Cortes y amputaciones por cuchillería y cortadora de fiambres</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="rQuemaduras" checked class="rounded text-blue-600">
+            <span>Quemaduras por proyección de aceite hirviendo y contacto con superficies calientes</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="rCaidas" checked class="rounded text-blue-600">
+            <span>Caídas al mismo nivel por suelos mojados o grasientos</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="rCargas" checked class="rounded text-blue-600">
+            <span>Manipulación manual de cargas (barriles de cerveza, cajas de producto)</span>
+          </label>
+          <label class="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-800 cursor-pointer">
+            <input type="checkbox" id="rQuimicos" checked class="rounded text-blue-600">
+            <span>Exposición a sustancias químicas (desengrasantes cáusticos, lavavajillas industrial)</span>
+          </label>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <button onclick="switchStep(3)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+        <button onclick="switchStep(5)" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          Siguiente: Alcance del Expediente <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 5: ALCANCE -->
+    <div id="step-5" class="step-content hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <h2 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-folder-tree text-blue-400"></i> Expediente Técnico Completo (11 Documentos)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>00 · Declaración y certificación</strong> (Asunción + SPA / Aviso Art. 11.2)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>01 · EVL</strong> (Evaluación de Riesgos por puesto INSST)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>02 · Programa de prevención</strong> (Planificación + Circuito Art. 22)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>03 · Plan de formación</strong> (Art. 19 LPRL)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>04 · Medidas de emergencia</strong> (Art. 20 LPRL)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>05 · Protocolos + Plantilla de Renuncia</strong> (Art. 22 LPRL)</span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>06 · Control y entrega de EPIs</strong></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>07 · Checklists de verificación periódica</strong></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>08 · Carteles informativos de seguridad</strong></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>09 · Evaluación ergonómica y psicosocial</strong></span>
+          </div>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center gap-2 md:col-span-2">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+            <span><strong>10 · Notificación de exención de auditoría</strong> (Anexo II RD 39/1997)</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <button onclick="switchStep(4)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+        <button onclick="switchStep(6)" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+          Ir a Generar Documentación <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 6: GENERACIÓN Y DESCARGAS -->
+    <div id="step-6" class="step-content hidden space-y-6">
+      
+      <!-- Bloque Informativo de Almacenamiento y Auto-guardado -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row items-start justify-between gap-3 text-xs text-slate-300">
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-hard-drive text-blue-400 text-base mt-0.5"></i>
+          <div class="space-y-0.5">
+            <p class="font-semibold text-white flex items-center gap-2">
+              Auto-guardado local continuo activo (localStorage)
+              <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] px-2 py-0.5 rounded font-mono">Protegido ante F5</span>
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              Tus 11 documentos y datos se van guardando continuamente en la memoria de tu navegador. Si recargas o sales por error, tu trabajo se recupera al instante. Al pulsar "Descargar", se exportan directamente a la carpeta <strong>Descargas</strong> de tu equipo. Ningún dato queda en servidores externos (RGPD).
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
+          <button onclick="borrarBorradoresGuardados()" class="text-xs text-slate-400 hover:text-rose-400 border border-slate-800 hover:border-rose-900/50 bg-slate-950 px-2.5 py-1.5 rounded transition flex items-center gap-1.5">
+            <i class="fa-solid fa-trash-can"></i> Limpiar borradores
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel de Control de Generación -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
+          <div class="flex items-center gap-2">
+            <button onclick="generarTodo()" id="btnGenerarTodo" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition flex items-center gap-2">
+              <i class="fa-solid fa-play"></i> Generar documentación
+            </button>
+            <button onclick="detenerGeneracion()" id="btnDetener" disabled class="bg-slate-800 text-slate-500 font-medium px-4 py-2.5 rounded-lg text-sm transition">
+              Detener
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="descargarTodoMd()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3.5 py-2 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
+              <i class="fa-solid fa-file-code text-blue-400"></i> Descargar todo (.md)
+            </button>
+            <button onclick="descargarTodoDoc()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3.5 py-2 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
+              <i class="fa-solid fa-file-word text-blue-500"></i> Descargar todo (.doc)
+            </button>
+            <button onclick="imprimirPdf()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3.5 py-2 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
+              <i class="fa-solid fa-print text-emerald-400"></i> Imprimir / PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Consola de Registro en Vivo -->
+        <div class="mt-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+            <span class="font-mono flex items-center gap-1.5"><i class="fa-solid fa-terminal text-blue-400"></i> Registro de ejecución en la nube:</span>
+            <button onclick="limpiarLog()" class="hover:text-slate-200">Limpiar registro</button>
+          </div>
+          <div id="consoleLog" class="bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 p-3.5 rounded-lg h-36 overflow-y-auto space-y-1">
+            <div class="text-slate-500">Sistema listo. Haz clic en "Generar documentación" para redactar el expediente técnico oficial.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visor y Editor de Documentos -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+        <!-- Pestañas de Documentos -->
+        <div class="flex border-b border-slate-800 bg-slate-950/80 overflow-x-auto text-xs font-medium">
+          <button onclick="switchDocTab(0)" id="docTab-0" class="doc-tab doc-tab-active px-4 py-3 whitespace-nowrap border-r border-slate-800 flex items-center gap-1.5">
+            00 · Declaración asunción
+          </button>
+          <button onclick="switchDocTab(1)" id="docTab-1" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            01 · EVL
+          </button>
+          <button onclick="switchDocTab(2)" id="docTab-2" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            02 · Programa prevención
+          </button>
+          <button onclick="switchDocTab(3)" id="docTab-3" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            03 · Formación
+          </button>
+          <button onclick="switchDocTab(4)" id="docTab-4" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            04 · Emergencias
+          </button>
+          <button onclick="switchDocTab(5)" id="docTab-5" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            05 · Protocolos + Renuncia
+          </button>
+          <button onclick="switchDocTab(6)" id="docTab-6" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            06 · EPIs
+          </button>
+          <button onclick="switchDocTab(7)" id="docTab-7" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            07 · Checklists
+          </button>
+          <button onclick="switchDocTab(8)" id="docTab-8" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            08 · Carteles
+          </button>
+          <button onclick="switchDocTab(9)" id="docTab-9" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800">
+            09 · Psicosocial
+          </button>
+          <button onclick="switchDocTab(10)" id="docTab-10" class="doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap">
+            10 · Exención auditoría
+          </button>
+        </div>
+
+        <!-- Barra de Herramientas del Documento Activo -->
+        <div class="p-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2">
+            <button onclick="copiarDocActual()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded border border-slate-700">
+              <i class="fa-solid fa-copy mr-1"></i> Copiar
+            </button>
+            <button onclick="descargarDocActualMd()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded border border-slate-700">
+              <i class="fa-solid fa-file mr-1"></i> .md
+            </button>
+            <button onclick="descargarDocActualDoc()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded border border-slate-700">
+              <i class="fa-solid fa-file-word mr-1"></i> .doc
+            </button>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="autosaveStatus" class="text-[11px] text-emerald-400 font-mono hidden md:flex items-center gap-1">
+              <i class="fa-solid fa-floppy-disk"></i> Guardado en local
+            </span>
+            <button onclick="regenerarDocActual()" class="bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-300 px-3 py-1.5 rounded border border-slate-700 transition">
+              <i class="fa-solid fa-arrows-rotate mr-1"></i> Regenerar este documento
+            </button>
+          </div>
+        </div>
+
+        <!-- Área de Texto Editable -->
+        <div class="p-4 bg-slate-950">
+          <textarea id="docContent" rows="18" class="w-full bg-slate-950 text-slate-100 font-mono text-xs leading-relaxed p-4 rounded-lg border border-slate-800 focus:outline-none focus:border-blue-500" placeholder="Aquí aparecerá el documento generado por la IA en tiempo real. También puedes editarlo o pegar contenido."></textarea>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+  <!-- MODAL DE DETALLE DEL SERVICIO IN SITU -->
+  <div id="modalServicioInSitu" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-check text-blue-400"></i> Asistencia Técnica PRL In Situ
+        </h3>
+        <button onclick="toggleModal('modalServicioInSitu')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 space-y-2">
+          <p class="font-semibold text-white text-sm flex items-center justify-between">
+            <span>Tarifa Técnica Profesional:</span>
+            <span class="text-emerald-400 text-sm font-bold font-mono">60 € / hora</span>
+          </p>
+          <p class="text-slate-400 text-[11px]">
+            * Desplazamiento tarificado según kilometraje desde sede técnica (0,35 €/km o tarifa plana comarcal). Tiempo medio habitual para locales de hostelería: 1,5 a 2 horas.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <p class="font-semibold text-slate-200">El servicio presencial incluye:</p>
+          <ul class="space-y-1.5 text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+              <span><strong>Revisión física del centro:</strong> Comprobación de cocina central, extintores, campanas, freidoras, suelos y botiquín.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+              <span><strong>Toma de datos guiada:</strong> Registro de puestos (cocineros, camareros, limpieza) y turnos.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+              <span><strong>Redacción del expediente oficial:</strong> Emisión in situ de los 11 documentos técnicos de autogestión (RD 39/1997).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+              <span><strong>Gestión legal Art. 22 LPRL:</strong> Asesoramiento documental para el ofrecimiento formal y recogida de renuncias voluntarias de la plantilla.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 flex flex-col sm:flex-row gap-2">
+        <button onclick="solicitarAsistenciaTecnica('whatsapp')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 rounded-lg text-xs transition flex items-center justify-center gap-1.5">
+          <i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp
+        </button>
+        <button onclick="solicitarAsistenciaTecnica('email')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium py-2 rounded-lg text-xs transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-envelope"></i> Enviar Email
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE GESTIÓN DE LICENCIA -->
+  <div id="modalLicencia" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-key text-amber-400"></i> Licencia del Cliente
+        </h3>
+        <button onclick="toggleModal('modalLicencia')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        La clave de licencia se valida criptográficamente contra el CIF de la empresa para habilitar la generación en la nube.
+      </p>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">CIF de la empresa</label>
+          <input type="text" id="licModalCif" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 font-mono uppercase text-white">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Clave de Licencia (PREV-CIF-HASH)</label>
+          <input type="text" id="licModalKey" placeholder="PREV-B87654321-XXXXXXXX" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 font-mono uppercase text-white">
+        </div>
+        <div class="pt-2 flex gap-2">
+          <button onclick="guardarLicenciaModal()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 rounded-lg transition">
+            Activar Licencia
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ESTADO DE LA APLICACIÓN
+    let currentStep = 1;
+    let activeDocIndex = 0;
+    let docsStorage = Array(11).fill("");
+    let isGenerating = false;
+    let abortController = null;
+
+    // NOMBRES OFICIALES DE LOS 11 DOCUMENTOS
+    const DOC_NAMES = [
+      "00 · Declaración y certificación de asunción",
+      "01 · EVL (Evaluación de Riesgos Laborales)",
+      "02 · Programa de prevención",
+      "03 · Plan de formación",
+      "04 · Medidas de emergencias",
+      "05 · 9 protocolos preventivos y plantilla de renuncia Art. 22",
+      "06 · Control de EPIs",
+      "07 · Checklists de control periódico",
+      "08 · Carteles informativos de seguridad",
+      "09 · Evaluación ergonómica y psicosocial",
+      "10 · Notificación de exención de auditoría"
+    ];
+
+    // CAMPOS DEL FORMULARIO A PERSISTIR
+    const FORM_IDS = [
+      "razonSocial", "cif", "cnae", "direccion", "municipio", "provincia",
+      "superficie", "plantas", "titular", "formacionTitular", "empresaSpa",
+      "puestosCocina", "puestosSala", "puestosOffice",
+      "instGas", "instFreidoras", "instCampana", "instCamaras", "instMontaplatos", "instTerraza",
+      "rCortes", "rQuemaduras", "rCaidas", "rCargas", "rQuimicos"
+    ];
+
+    // INICIALIZACIÓN
+    window.addEventListener("DOMContentLoaded", () => {
+      cargarLicenciaGuardada();
+      cargarFormularioLocalStorage();
+      cargarDocsGuardados();
+      cargarDocActualEnEditor();
+      actualizarIndicadoresPestanas();
+
+      // Escuchar cambios en cualquier campo del formulario para auto-guardar
+      document.querySelectorAll("input, select").forEach(input => {
+        input.addEventListener("input", guardarFormularioLocalStorage);
+        input.addEventListener("change", guardarFormularioLocalStorage);
+      });
+    });
+
+    // NAVEGACIÓN DE PASOS
+    function switchStep(step) {
+      currentStep = step;
+      document.querySelectorAll(".step-content").forEach(el => el.classList.add("hidden"));
+      const target = document.getElementById(`step-${step}`);
+      if (target) target.classList.remove("hidden");
+
+      document.querySelectorAll(".step-btn").forEach((btn, idx) => {
+        if (idx + 1 === step) {
+          btn.className = "step-btn tab-active px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 flex items-center gap-2 whitespace-nowrap";
+        } else {
+          btn.className = "step-btn text-slate-400 hover:text-slate-200 px-4 py-2.5 rounded-t-lg text-sm font-medium border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap";
+        }
+      });
+    }
+
+    // PESTAÑAS DE DOCUMENTOS
+    function switchDocTab(index) {
+      docsStorage[activeDocIndex] = document.getElementById("docContent").value;
+      guardarDocsLocalStorage();
+      activeDocIndex = index;
+      document.querySelectorAll(".doc-tab").forEach((tab, idx) => {
+        if (idx === index) {
+          tab.className = "doc-tab doc-tab-active px-4 py-3 whitespace-nowrap border-r border-slate-800 flex items-center gap-1.5";
+        } else {
+          tab.className = "doc-tab text-slate-400 hover:text-white px-4 py-3 whitespace-nowrap border-r border-slate-800";
+        }
+      });
+      cargarDocActualEnEditor();
+    }
+
+    function cargarDocActualEnEditor() {
+      document.getElementById("docContent").value = docsStorage[activeDocIndex] || "";
+    }
+
+    document.getElementById("docContent").addEventListener("input", (e) => {
+      docsStorage[activeDocIndex] = e.target.value;
+      guardarDocsLocalStorage();
+    });
+
+    // AUTO-GUARDADO Y RECUPERACIÓN LOCAL (localStorage)
+    function guardarFormularioLocalStorage() {
+      try {
+        const data = {};
+        FORM_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          data[id] = el.type === "checkbox" ? el.checked : el.value;
+        });
+        localStorage.setItem("prevhostel_form", JSON.stringify(data));
+      } catch (e) {
+        console.warn("Error al guardar formulario en localStorage", e);
+      }
+    }
+
+    function cargarFormularioLocalStorage() {
+      try {
+        const raw = localStorage.getItem("prevhostel_form");
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        FORM_IDS.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el || data[id] === undefined) return;
+          if (el.type === "checkbox") el.checked = Boolean(data[id]);
+          else el.value = data[id];
+        });
+      } catch (e) {
+        console.warn("Error al cargar formulario de localStorage", e);
+      }
+    }
+
+    function guardarDocsLocalStorage() {
+      try {
+        localStorage.setItem("prevhostel_docs", JSON.stringify(docsStorage));
+        actualizarIndicadoresPestanas();
+        mostrarFeedbackGuardado();
+      } catch (e) {
+        console.warn("Error al guardar documentos en localStorage", e);
+      }
+    }
+
+    function cargarDocsGuardados() {
+      try {
+        const saved = localStorage.getItem("prevhostel_docs");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length === 11) {
+            docsStorage = parsed;
+            const count = docsStorage.filter(d => d && d.trim().length > 0).length;
+            if (count > 0) {
+              addLog(`✓ Se han restaurado ${count} documento(s) guardados previamente en tu navegador.`, "success");
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("Error cargando documentos de localStorage", e);
+      }
+    }
+
+    function actualizarIndicadoresPestanas() {
+      document.querySelectorAll(".doc-tab").forEach((tab, idx) => {
+        const hasContent = docsStorage[idx] && docsStorage[idx].trim().length > 0;
+        const shortNames = [
+          "00 · Asunción", "01 · EVL", "02 · Programa", "03 · Formación",
+          "04 · Emergencias", "05 · Protocolos", "06 · EPIs", "07 · Checklists",
+          "08 · Carteles", "09 · Psicosocial", "10 · Exención"
+        ];
+        const label = shortNames[idx] || `Doc ${idx}`;
+        if (hasContent) {
+          tab.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-1"></span> ${label}`;
+        } else {
+          tab.textContent = label;
+        }
+      });
+    }
+
+    let saveTimer = null;
+    function mostrarFeedbackGuardado() {
+      const badge = document.getElementById("autosaveStatus");
+      if (!badge) return;
+      badge.classList.remove("hidden");
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        // mantener visible
+      }, 2000);
+    }
+
+    function borrarBorradoresGuardados() {
+      if (confirm("¿Deseas vaciar todos los borradores de documentos guardados en este navegador?")) {
+        docsStorage = Array(11).fill("");
+        localStorage.removeItem("prevhostel_docs");
+        document.getElementById("docContent").value = "";
+        actualizarIndicadoresPestanas();
+        addLog("ℹ Se han vaciado los borradores de documentos de la memoria local.", "warn");
+      }
+    }
+
+    // SISTEMA DE LOGS
+    function addLog(msg, type = "info") {
+      const consoleEl = document.getElementById("consoleLog");
+      const div = document.createElement("div");
+      if (type === "success") div.className = "text-emerald-400 font-semibold";
+      else if (type === "error") div.className = "text-rose-400 font-semibold";
+      else if (type === "warn") div.className = "text-amber-300";
+      else div.className = "text-slate-300";
+      div.textContent = msg;
+      consoleEl.appendChild(div);
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+
+    function limpiarLog() {
+      document.getElementById("consoleLog").innerHTML = "";
+    }
+
+    // VERIFICACIÓN DE CONEXIÓN
+    async function verificarConexion() {
+      const btn = document.getElementById("btnVerificar");
+      const badge = document.getElementById("connectionBadge");
+      const badgeText = document.getElementById("connectionBadgeText");
+      const serverUrl = document.getElementById("serverUrl").value.trim().replace(/\/$/, "");
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> probando...`;
+
+      try {
+        const res = await fetch(`${serverUrl}/api`, { method: "GET" });
+        if (res.ok) {
+          const data = await res.json();
+          badge.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30";
+          badgeText.textContent = "Nube Operativa";
+          badge.classList.remove("hidden");
+          addLog("✓ Conexión establecida con el servidor seguro: " + (data.service || "PrevHostel Cloud Engine"), "success");
+        } else {
+          throw new Error("HTTP " + res.status);
+        }
+      } catch (err) {
+        badge.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-semibold flex items-center gap-1.5 bg-rose-500/10 text-rose-400 border border-rose-500/30";
+        badgeText.textContent = "Sin Conexión";
+        badge.classList.remove("hidden");
+        addLog("✗ No se pudo conectar: " + err.message, "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-network-wired"></i> Verificar conexión`;
+      }
+    }
+
+    // GESTIÓN DE LICENCIA (HASH SHA-256)
+    async function hashStr(str) {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+    }
+
+    async function generarKeyParaCif(cif) {
+      const cleanCif = cif.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+      const salt = "PREVHOSTEL_2026_SECRET_KEY_PRL";
+      const year = new Date().getFullYear();
+      const raw = `${cleanCif}:${year}:${salt}`;
+      const h = await hashStr(raw);
+      return `PREV-${cleanCif}-${h.slice(0, 8)}`;
+    }
+
+    function cargarLicenciaGuardada() {
+      const cif = localStorage.getItem("prevhostel_cif") || "";
+      const key = localStorage.getItem("prevhostel_key") || "";
+      const razon = localStorage.getItem("prevhostel_razon") || "";
+
+      if (cif && key) {
+        document.getElementById("licenseStatusText").textContent = `Licencia: Activa (${cif})`;
+        document.getElementById("licenseBadge").querySelector("span").className = "flex items-center gap-1.5 text-emerald-400 font-medium";
+        document.getElementById("quotaText").textContent = "Ilimitada / En vigor";
+        document.getElementById("cif").value = cif;
+        if (razon && !document.getElementById("razonSocial").value) {
+          document.getElementById("razonSocial").value = razon;
+        }
+      }
+    }
+
+    async function guardarLicenciaModal() {
+      const cif = document.getElementById("licModalCif").value.trim().toUpperCase();
+      const key = document.getElementById("licModalKey").value.trim().toUpperCase();
+
+      if (!cif || !key) {
+        alert("Introduce el CIF y la Clave de licencia.");
+        return;
+      }
+
+      localStorage.setItem("prevhostel_cif", cif);
+      localStorage.setItem("prevhostel_key", key);
+      cargarLicenciaGuardada();
+      toggleModal("modalLicencia");
+      addLog(`✓ Licencia oficial activada para CIF: ${cif}. Cerrojo legal establecido.`, "success");
+    }
+
+    function desvincularLicencia() {
+      if (confirm("¿Desvincular la licencia actual del navegador?")) {
+        localStorage.removeItem("prevhostel_cif");
+        localStorage.removeItem("prevhostel_key");
+        document.getElementById("licenseStatusText").textContent = "Licencia: Sin activar (---)";
+        document.getElementById("licenseBadge").querySelector("span").className = "flex items-center gap-1.5 text-amber-400 font-medium";
+        document.getElementById("quotaText").textContent = "---";
+        addLog("ℹ Licencia desvinculada.", "warn");
+      }
+    }
+
+    function toggleModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle("hidden");
+        if (!el.classList.contains("hidden")) {
+          document.getElementById("licModalCif").value = document.getElementById("cif").value.trim();
+        }
+      }
+    }
+
+    // CARGAR EJEMPLO (RESTAURANTE LA COCINA DE ANA)
+    async function cargarEjemplo() {
+      document.getElementById("razonSocial").value = "Restaurante La Cocina de Ana S.L.";
+      document.getElementById("cif").value = "B-87654321";
+      document.getElementById("cnae").value = "5610 - Restaurantes y puestos de comidas";
+      document.getElementById("direccion").value = "C/ Mayor 25";
+      document.getElementById("municipio").value = "Madrid";
+      document.getElementById("provincia").value = "Madrid";
+      document.getElementById("superficie").value = "280";
+      document.getElementById("plantas").value = "2";
+      document.getElementById("titular").value = "Ana Martínez Ruiz";
+      document.getElementById("empresaSpa").value = ""; // Se deja en blanco deliberadamente para activar el protocolo de ofrecimiento y renuncia
+
+      guardarFormularioLocalStorage();
+
+      const sampleKey = await generarKeyParaCif("B-87654321");
+      localStorage.setItem("prevhostel_cif", "B-87654321");
+      localStorage.setItem("prevhostel_key", sampleKey);
+      localStorage.setItem("prevhostel_razon", "Restaurante La Cocina de Ana S.L.");
+      cargarLicenciaGuardada();
+
+      addLog("✓ Datos de ejemplo cargados y Licencia oficial autogenerada para B-87654321.", "success");
+      addLog("ℹ SPA concertado dejado en blanco: Se activará la advertencia previa y el protocolo de renuncia Art. 22 LPRL.", "warn");
+    }
+
+    // CONSTRUCTOR DE CONTEXTO Y PROMPTS CON EL BLOQUE DE MEDICINA Y RENUNCIA
+    function getEmpresaContext() {
+      const razon = document.getElementById("razonSocial").value.trim() || "Empresa de Hostelería";
+      const cif = document.getElementById("cif").value.trim().toUpperCase() || "B-00000000";
+      const cnae = document.getElementById("cnae").value;
+      const direccion = document.getElementById("direccion").value.trim() || "C/ Principal";
+      const municipio = document.getElementById("municipio").value.trim() || "Localidad";
+      const provincia = document.getElementById("provincia").value.trim() || "Provincia";
+      const superficie = document.getElementById("superficie").value || "150";
+      const plantas = document.getElementById("plantas").value || "1";
+      const titular = document.getElementById("titular").value.trim() || "Empresario Titular";
+      const formacion = document.getElementById("formacionTitular").value;
+      const spaVal = document.getElementById("empresaSpa").value.trim();
+
+      const pCocina = document.getElementById("puestosCocina").value || "0";
+      const pSala = document.getElementById("puestosSala").value || "0";
+      const pOffice = document.getElementById("puestosOffice").value || "0";
+
+      // CLÁUSULA DINÁMICA DE VIGILANCIA DE LA SALUD Y RENUNCIA ART. 22 LPRL
+      let clausulaSalud = "";
+      if (spaVal) {
+        clausulaSalud = `
+MEDICINA DEL TRABAJO Y VIGILANCIA DE LA SALUD:
+- Especialidad médica concertada con el SPA acreditado: "${spaVal}".
+- La empresa cumple con el ofrecimiento formal individualizado del examen de salud médico periódico específico a toda la plantilla.
+- El trabajador dispone de derecho de renuncia voluntaria conforme al Art. 22.1 LPRL, archivándose los certificados de renuncia en la sede de la empresa.
+`;
+      } else {
+        clausulaSalud = `
+MEDICINA DEL TRABAJO Y VIGILANCIA DE LA SALUD (ADVERTENCIA LEGAL Y CONCIERTO EN TRÁMITE):
+- ESTADO: En trámite de formalización documental de SPA para la especialidad médica.
+- ADVERTENCIA LEGAL PRECEPTIVA (ART. 11.2 RD 39/1997): El titular declara expresamente conocer que la modalidad de Asunción Personal del Empresario NO comprende ni ampara la Medicina del Trabajo ni la Vigilancia de la Salud, la cual exige facultativo médico del trabajo colegiado.
+- DEBER PATRONAL INELUDIBLE: El empresario reconoce su obligación inexcusable (Art. 14 y 22 LPRL) de poner a disposición de la plantilla el reconocimiento médico laboral mediante un SPA acreditado.
+- DERECHO DEL TRABAJADOR Y OFRECIMIENTO FORMAL: Se deja constancia de que, si bien la realización del reconocimiento médico es con carácter general un derecho voluntario del empleado (pudiendo este renunciar), es DEBER INEXCUSABLE DE LA EMPRESA realizar el ofrecimiento formal por escrito.
+- SE INCORPORA EN ESTE EXPEDIENTE: Cláusula de compromiso de concierto y el modelo oficial de Comunicación de Ofrecimiento y Declaración de Renuncia Voluntaria Expresa para recabar la firma individual de cada empleado.
+`;
+      }
+
+      return {
+        razon, cif, cnae, direccion, municipio, provincia, superficie, plantas, titular, formacion, spaVal,
+        clausulaSalud, pCocina, pSala, pOffice
+      };
+    }
+
+    function buildPromptForDoc(index) {
+      const c = getEmpresaContext();
+
+      switch (index) {
+        case 0: // 00 · Declaración
+          return `Actúa como Técnico Superior en Prevención de Riesgos Laborales en España. Redacta el documento oficial "00 · DECLARACIÓN Y CERTIFICACIÓN OFICIAL DE ASUNCIÓN PERSONAL DE LA ACTIVIDAD PREVENTIVA POR EL EMPRESARIO" conforme al Art. 11 del RD 39/1997.
+EMPRESA: ${c.razon} (CIF: ${c.cif}), Actividad: ${c.cnae}, Centro: ${c.direccion}, ${c.municipio} (${c.provincia}). Superficie: ${c.superficie} m2 en ${c.plantas} plantas.
+TITULAR ASUNTOR: ${c.titular}, con formación acreditada: ${c.formacion}.
+PLANTILLA: Cocina (${c.pCocina}), Sala/Barra (${c.pSala}), Office (${c.pOffice}). Total dentro de los límites del RD 39/1997.
+${c.clausulaSalud}
+ESTRUCTURA OBLIGATORIA:
+1. Manifestación formal de asunción de las disciplinas técnicas (Seguridad en el Trabajo, Ergonomía y Psicosociología, e Higiene Industrial).
+2. Cláusula específica sobre Medicina del Trabajo / Vigilancia de la Salud (si consta SPA se cita; si no, se inserta la advertencia legal del Art. 11.2 RD 39/1997, el compromiso formal de concierto y la obligación de ofrecimiento escrito con opción de renuncia Art. 22 LPRL).
+3. Certificación de presencia habitual del titular en el centro de trabajo.
+4. Bloque de firma oficial con fecha y lugar.`;
+
+        case 1: // 01 · EVL
+          return `Actúa como Técnico Superior de PRL. Redacta el documento oficial "01 · EVALUACIÓN DE RIESGOS LABORALES (EVL)" para ${c.razon} (CIF: ${c.cif}).
+Puestos evaluados: Cocina (${c.pCocina} trab.), Sala/Barra (${c.pSala} trab.), Office (${c.pOffice} trab.).
+Aplica metodología técnica INSST (Probabilidad x Consecuencia = Estimación del Riesgo).
+Desarrolla tablas de riesgos para: caídas al mismo nivel (suelos grasos), cortes y amputaciones (cuchillos, cortadoras), quemaduras (aceites, planchas), sobreesfuerzos (cargas), contacto químico (desengrasantes) y medidas correctoras inmediatas.`;
+
+        case 2: // 02 · Programa de prevención
+          return `Actúa como Técnico Superior de PRL. Redacta el documento oficial "02 · PROGRAMA DE PREVENCIÓN Y PLANIFICACIÓN DE ACTIVIDADES PREVENTIVAS" para ${c.razon} (CIF: ${c.cif}).
+${c.clausulaSalud}
+INSTRUCCIÓN OBLIGATORIA DE SALUD:
+Desarrolla una sección completa titulada "PROCEDIMIENTO DE VIGILANCIA DE LA SALUD Y GESTIÓN DEL OFRECIMIENTO FORMAL (ART. 22 LPRL)".
+Explica la distinción jurídica: obligatoriedad empresarial de realizar el ofrecimiento formal por escrito de forma individual y anual frente a la voluntariedad del trabajador para someterse al examen.
+Detalla el circuito de entrega del documento de ofrecimiento, recepción de renuncias voluntarias y custodia en la carpeta de prevención para la Inspección de Trabajo (ITSS). Incluye calendario anual de acciones preventivas.`;
+
+        case 3: // 03 · Formación
+          return `Actúa como Técnico Superior de PRL. Redacta el documento "03 · PLAN DE FORMACIÓN E INFORMACIÓN DE LOS TRABAJADORES (ART. 18 Y 19 LPRL)" para ${c.razon} (CIF: ${c.cif}).
+Programas formativos específicos para cocineros, camareros y personal de limpieza en hostelería, registro de entrega de manuales y control de firmas.`;
+
+        case 4: // 04 · Emergencias
+          return `Actúa como Técnico Superior de PRL. Redacta las "04 · MEDIDAS DE EMERGENCIA Y EVACUACIÓN (ART. 20 LPRL)" para ${c.razon} (CIF: ${c.cif}).
+Local de ${c.superficie} m2 en ${c.plantas} plantas. Protocolo de actuación en caso de conato de incendio en cocina (fuego de grasas - extintor clase F), evacuación de clientes, asignación de jefe de emergencias (${c.titular}) y directorio de teléfonos de emergencia.`;
+
+        case 5: // 05 · Protocolos + Plantilla Renuncia
+          return `Actúa como Técnico Superior de PRL. Redacta el documento "05 · PROTOCOLOS DE SEGURIDAD EN HOSTELERÍA Y ANEXO FORMAL DE VIGILANCIA DE LA SALUD" para ${c.razon} (CIF: ${c.cif}).
+Desarrolla protocolos operativos de cocina, manipulación de cuchillos, freidoras, suelos y productos químicos.
+${c.clausulaSalud}
+INCLUIR OBLIGATORIAMENTE AL FINAL LA PLANTILLA ÍNTEGRA LISTA PARA IMPRIMIR Y FIRMAR:
+========================================================================
+ANEXO FORMAL: COMUNICACIÓN DE OFRECIMIENTO DE VIGILANCIA DE LA SALUD Y DECLARACIÓN DE RENUNCIA EXPRESA (ART. 22.1 LPRL)
+- Encabezado con datos de la empresa: ${c.razon} (CIF: ${c.cif})
+- Datos del trabajador (Nombre, DNI/NIE, Puesto de trabajo, Fecha de alta)
+- Notificación formal donde la empresa pone a disposición el reconocimiento médico periódico adaptado a los riesgos de hostelería sin coste alguno.
+- Dos casillas de opción excluyente claramente delimitadas:
+  [  ] ACEPTO someterme al reconocimiento médico laboral ofrecido por la empresa.
+  [  ] RENUNCIO voluntariamente a la realización del reconocimiento médico laboral en el ejercicio del derecho conferido por el Art. 22.1 de la Ley 31/1995 de Prevención de Riesgos Laborales, manifestando haber sido informado de los riesgos de mi puesto y de la recomendación de dicha prueba.
+- Bloque de firmas cruzadas: Firma del Empresario (acreditando el ofrecimiento) y Firma manuscrita del Trabajador con fecha y lugar.
+========================================================================`;
+
+        case 6: // 06 · EPIs
+          return `Actúa como Técnico Superior de PRL. Redacta el "06 · PROCEDIMIENTO DE SELECCIÓN, USO Y HOJA DE ENTREGA DE EQUIPOS DE PROTECCIÓN INDIVIDUAL (EPI)" para ${c.razon} (CIF: ${c.cif}).
+Calzado antideslizante con puntera, delantales térmicos, guantes de malla metálica para corte, guantes de nitrilo químico. Incluye modelo de registro de entrega firmado por empleado.`;
+
+        case 7: // 07 · Checklists
+          return `Actúa como Técnico Superior de PRL. Redacta el documento "07 · LISTAS DE CHEQUEO Y CONTROL PERIÓDICO MENSUAL DE CONDICIONES DE TRABAJO" para ${c.razon} (CIF: ${c.cif}).
+Tablas de verificación mensual de extintores, salidas libres de obstáculos, estado de corte de cuchillería, antideslizamiento de suelos y orden en almacén.`;
+
+        case 8: // 08 · Carteles
+          return `Actúa como Técnico Superior de PRL. Redacta el documento "08 · CARTELES E INSTRUCCIONES VISUALES DE SEGURIDAD PARA HOSTELERÍA" para fijar en cocina, barra y almacén de ${c.razon}. Normas de seguridad rápida frente a cortes, quemaduras y salpicaduras.`;
+
+        case 9: // 09 · Psicosocial
+          return `Actúa como Técnico Superior de PRL. Redacta la "09 · EVALUACIÓN ESPECÍFICA DE FACTORES ERGONÓMICOS Y PSICOSOCIALES EN HOSTELERÍA" para ${c.razon} (CIF: ${c.cif}).
+Análisis de turnos partidos, picos de comandas, bipedestación prolongada, ritmos de trabajo y medidas organizativas de prevención del estrés.`;
+
+        case 10: // 10 · Exención
+          return `Actúa como Técnico Superior de PRL. Redacta el documento "10 · COMUNICACIÓN OFICIAL A LA AUTORIDAD LABORAL DE EXENCIÓN DE AUDITORÍA DEL SISTEMA DE PREVENCIÓN (ANEXO II RD 39/1997)" para la empresa ${c.razon} (CIF: ${c.cif}), solicitando la acreditación de no necesidad de auditoría al tener menos de 50 trabajadores y no desarrollar actividades del Anexo I.`;
+
+        default:
+          return `Redacta documentación técnica oficial de PRL para ${c.razon}.`;
+      }
+    }
+
+    // FLUJO DE LLAMADA STREAMING A LA API DE VERCEL
+    async function streamGenerateDoc(index) {
+      const serverUrl = document.getElementById("serverUrl").value.trim().replace(/\/$/, "");
+      const cif = document.getElementById("cif").value.trim().toUpperCase();
+      const licenseKey = localStorage.getItem("prevhostel_key") || "";
+
+      if (!cif) throw new Error("Falta indicar el CIF de la empresa en el Paso 1.");
+      if (!licenseKey) throw new Error("Licencia no vinculada. Haz clic en 'Cargar ejemplo' o activa una licencia válida.");
+
+      const prompt = buildPromptForDoc(index);
+
+      addLog(`→ Generando ${DOC_NAMES[index]}…`, "info");
+      switchDocTab(index);
+      docsStorage[index] = "";
+      document.getElementById("docContent").value = "";
+      guardarDocsLocalStorage();
+
+      const response = await fetch(`${serverUrl}/api`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Client-CIF": cif,
+          "X-License-Key": licenseKey
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          cif: cif,
+          licenseKey: licenseKey,
+          maxTokens: 8192
+        }),
+        signal: abortController ? abortController.signal : null
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Servidor Nube (${response.status}): ${errText}`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop(); // conservar resto incompleto
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed.startsWith("data: ")) {
+            const dataStr = trimmed.slice(6).trim();
+            if (dataStr === "[DONE]") continue;
+            try {
+              const parsed = JSON.parse(dataStr);
+              const chunk = parsed.choices?.[0]?.delta?.content || "";
+              if (chunk) {
+                docsStorage[index] += chunk;
+                if (activeDocIndex === index) {
+                  document.getElementById("docContent").value = docsStorage[index];
+                  document.getElementById("docContent").scrollTop = document.getElementById("docContent").scrollHeight;
+                }
+              }
+            } catch (e) {
+              // Fragmento no JSON en tránsito
+            }
+          }
+        }
+      }
+
+      guardarDocsLocalStorage();
+      addLog(`✓ ${DOC_NAMES[index]} completado con éxito.`, "success");
+    }
+
+    // GENERAR TODOS LOS DOCUMENTOS SECUENCIALMENTE
+    async function generarTodo() {
+      if (isGenerating) return;
+
+      const btnGenerar = document.getElementById("btnGenerarTodo");
+      const btnDetener = document.getElementById("btnDetener");
+
+      isGenerating = true;
+      abortController = new AbortController();
+      btnGenerar.disabled = true;
+      btnGenerar.classList.add("opacity-50");
+      btnDetener.disabled = false;
+      btnDetener.classList.remove("text-slate-500");
+      btnDetener.classList.add("text-rose-400", "hover:bg-slate-700");
+
+      try {
+        for (let i = 0; i < 11; i++) {
+          if (!isGenerating) break;
+          await streamGenerateDoc(i);
+        }
+        if (isGenerating) {
+          addLog("★ Expediente completo generado con éxito. Revisa cada documento antes de firmar.", "success");
+        }
+      } catch (err) {
+        if (err.name === "AbortError") {
+          addLog("Proceso detenido por el usuario.", "warn");
+        } else {
+          addLog(`✗ Error durante la generación: ${err.message}`, "error");
+        }
+      } finally {
+        isGenerating = false;
+        abortController = null;
+        btnGenerar.disabled = false;
+        btnGenerar.classList.remove("opacity-50");
+        btnDetener.disabled = true;
+        btnDetener.className = "bg-slate-800 text-slate-500 font-medium px-4 py-2.5 rounded-lg text-sm transition";
+      }
+    }
+
+    async function regenerarDocActual() {
+      if (isGenerating) return;
+      isGenerating = true;
+      abortController = new AbortController();
+      try {
+        await streamGenerateDoc(activeDocIndex);
+      } catch (err) {
+        addLog(`✗ Error: ${err.message}`, "error");
+      } finally {
+        isGenerating = false;
+        abortController = null;
+      }
+    }
+
+    function detenerGeneracion() {
+      if (abortController) {
+        abortController.abort();
+        isGenerating = false;
+      }
+    }
+
+    // EXPORTACIÓN Y DESCARGAS
+    function copiarDocActual() {
+      const text = document.getElementById("docContent").value;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Documento copiado al portapapeles.");
+      });
+    }
+
+    function descargarDocActualMd() {
+      const text = document.getElementById("docContent").value;
+      if (!text) return alert("El documento actual está vacío.");
+      descargarArchivo(text, `${DOC_NAMES[activeDocIndex].replace(/[^a-zA-Z0-9]/g, "_")}.md`, "text/markdown");
+    }
+
+    function descargarDocActualDoc() {
+      const text = document.getElementById("docContent").value;
+      if (!text) return alert("El documento actual está vacío.");
+      exportarWord(text, `${DOC_NAMES[activeDocIndex].replace(/[^a-zA-Z0-9]/g, "_")}.doc`);
+    }
+
+    function descargarTodoMd() {
+      let combined = "";
+      for (let i = 0; i < 11; i++) {
+        combined += `\n\n# ${DOC_NAMES[i]}\n\n` + (docsStorage[i] || "(Documento no generado)");
+      }
+      descargarArchivo(combined, "Expediente_PRL_Completo.md", "text/markdown");
+    }
+
+    function descargarTodoDoc() {
+      let combined = "";
+      for (let i = 0; i < 11; i++) {
+        combined += `\n\n=== ${DOC_NAMES[i]} ===\n\n` + (docsStorage[i] || "(Documento no generado)\n");
+      }
+      exportarWord(combined, "Expediente_PRL_Completo.doc");
+    }
+
+    function exportarWord(contenido, filename) {
+      const htmlDoc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>PRL Hostelería</title>
+        <style>
+          body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.4; color: #111; }
+          h1 { font-size: 16pt; color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 4px; margin-top: 24pt; }
+          h2 { font-size: 13pt; color: #1e40af; margin-top: 14pt; }
+          table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+          th, td { border: 1px solid #999; padding: 6pt; text-align: left; font-size: 10pt; }
+          th { background-color: #f1f5f9; }
+        </style>
+        </head>
+        <body>
+          ${contenido.replace(/\n\n/g, "<p></p>").replace(/\n/g, "<br>")}
+        </body>
+        </html>
+      `;
+      descargarArchivo(htmlDoc, filename, "application/msword");
+    }
+
+    function imprimirPdf() {
+      const text = document.getElementById("docContent").value;
+      if (!text) return alert("No hay texto para imprimir.");
+      const win = window.open("", "_blank");
+      win.document.write(`
+        <html>
+        <head>
+          <title>${DOC_NAMES[activeDocIndex]}</title>
+          <style>
+            body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12pt; line-height: 1.5; color: #111; padding: 30px; }
+            h1 { color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 6px; }
+            pre { white-space: pre-wrap; font-family: inherit; }
+            @media print { body { padding: 0; } }
+          </style>
+        </head>
+        <body>
+          <h1>${DOC_NAMES[activeDocIndex]}</h1>
+          <pre>${text}</pre>
+        </body>
+        </html>
+      `);
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 350);
+    }
+
+    function descargarArchivo(contenido, nombre, mime) {
+      const blob = new Blob([contenido], { type: `${mime};charset=utf-8` });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  
+    // CONFIGURACIÓN DE CONTACTO COMERCIAL (ASISTENCIA IN SITU)
+    const CONTACTO_CONFIG = {
+      telefonoWhatsApp: "34600000000", // Sustituye con tu teléfono WhatsApp comercial
+      emailSoporte: "info@hsqe.qd.je"   // Correo oficial
+    };
+
+    function solicitarAsistenciaTecnica(canal) {
+      const razon = document.getElementById("razonSocial")?.value.trim() || "mi establecimiento";
+      const municipio = document.getElementById("municipio")?.value.trim() || "";
+      const direccion = document.getElementById("direccion")?.value.trim() || "";
+      
+      const ubicacionTexto = direccion ? ` en ${direccion} (${municipio})` : (municipio ? ` en ${municipio}` : "");
+      
+      const mensaje = `Hola, me pongo en contacto desde ${razon}${ubicacionTexto}. Deseo contratar el servicio de asistencia técnica presencial para la elaboración del expediente PRL (tarifa: 60 €/h + desplazamiento). ¿Cuándo tendríais disponibilidad para realizar la visita?`;
+
+      if (canal === "whatsapp") {
+        const url = `https://wa.me/${CONTACTO_CONFIG.telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, "_blank");
+      } else if (canal === "email") {
+        const asunto = `Solicitud de Asistencia Técnica In Situ - ${razon}`;
+        const mailto = `mailto:${CONTACTO_CONFIG.emailSoporte}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(mensaje)}`;
+        window.location.href = mailto;
+      }
+    }
+
+  </script>
+</body>
+</html>
