@@ -1,3 +1,2343 @@
+ación
+Biblioteca
+Imágenes
+Programado
+Personalizar
+Vídeos
+Nuevo cuaderno
+Prevención de riesgos en hostelería
+Facturar sin ser autónomo: Software y asesoría
+Resumen de Documentos Contractuales ENEL
+Gems: AI Experts vs. Gemstones
+busca vuelo a Guatemala para el 15 de agosto hasta el 22-25-30 en función de las ofertas
+
+Actividad
+Esplugues de Llobregat, España
+Según tus sitios (casa)
+Conversación con Gemini
+No consigo ver el código completo de mi web en el commit da71c05 de GitHub.
+
+Para ver y copiar el código completo de tu web comercial original sin los signos + de la pantalla de cambios (diff), puedes acceder directamente al archivo tal y como estaba en ese commit.   
+image_207d8b.png
+
+Opción 1: Enlace directo al archivo completo (Recomendada)
+Haz clic en este enlace para abrir directamente el archivo en ese punto de la historia:
+👉 Ver index.html completo en el commit da71c05   
+image_207d8b.png
+
+Una vez abierto:
+
+Pulsa el botón Raw (arriba a la derecha del visor de código) o el icono de los dos rectángulos superpuestos (Copy raw file).   
+image_207d8b.png
+
+Si pulsaste Raw, se abrirá una pestaña en blanco con solo el código fuente: pulsa Ctrl + A para seleccionar todo y Ctrl + C para copiarlo.
+
+Opción 2: Desde la pantalla del commit en GitHub
+Si estás dentro de la pantalla del commit da71c05:
+
+1
+1. Pulsar Browse files
+Barra superior derecha
+En la esquina superior derecha de la pantalla (justo a la altura del título Commit da71c05), haz clic en el botón Browse files.
+Verification: El repositorio se abrirá como un explorador de carpetas congelado en esa versión del código.
+
+2
+2. Abrir index.html
+Listado de archivos
+Haz clic sobre el archivo index.html en el listado[cite: 14].
+Verification: Verás el código limpio de 895 líneas sin bandas verdes ni símbolos + de adición.
+
+3
+3. Copiar el contenido
+Esquina superior del visor
+Haz clic en el icono de copiar al portapapeles (dos cuadrados superpuestos) situado arriba a la derecha del cuadro de código.
+Verification: Aparecerá una marca de verificación verde indicando que el código completo se ha copiado.
+
+Siguiente paso: restaurar la portada
+Una vez copiado ese código:
+
+Ve a github.com/sbreina/web-prl/blob/main/index.html.   
+image_207d8b.png
+
+Pulsa el lápiz (Edit this file).   
+image_207d8b.png
+
+Selecciona todo (Ctrl + A), pega el código copiado (Ctrl + V) y pulsa Commit changes.   
+image_207d8b.png
+
+Sube la herramienta interactiva como un archivo nuevo llamado generador.html para que convivan la web de ventas y la aplicación técnica.
+
+Tengo el index que tenia guardado en mi pc, dime a partir de aqui que hago
+
+Teniendo el archivo index.html original de tu web comercial en tu ordenador, el proceso para dejar funcionando tanto la web de ventas como la aplicación técnica se completa en tres pasos rápidos:
+
+1
+1. Preparar los dos archivos
+1 minuto · En tu ordenador
+Asegúrate de tener en tu carpeta estos dos ficheros:
+
+index.html: El archivo que tenías guardado en tu PC (tu web principal comercial).
+
+generador.html: Toma el archivo del generador técnico que descargamos antes (generador-prl-v5-cloud.html) y cámbiale el nombre a generador.html en tu ordenador.
+
+2
+2. Subir ambos archivos a GitHub
+1 minuto · En GitHub
+Entra en tu repositorio: github.com/sbreina/web-prl.
+
+Asegúrate de estar en la rama main (arriba a la izquierda debe poner main).
+
+Pulsa el botón desplegable Add file → Upload files.
+
+Arrastra los dos archivos a la vez (index.html y generador.html) al recuadro de carga.
+
+Baja al final de la página y pulsa el botón verde Commit changes.
+Verification: En la lista principal de GitHub deben figurar index.html (tu web comercial) y generador.html (la herramienta interactiva).
+
+3
+3. Comprobar que todo carga correctamente
+30 segundos · En el navegador
+Abre tu dirección web en el navegador:
+
+Tu web comercial: Entra a [https://sbreina.github.io/web-prl/](https://sbreina.github.io/web-prl/) (o a tu enlace de Cloudflare). Cargará la presentación de PrevHostel con sus textos y diseño comercial original.
+
+La aplicación técnica: Entra a [https://sbreina.github.io/web-prl/generador.html](https://sbreina.github.io/web-prl/generador.html) (o añade /generador.html al final de tu URL de Cloudflare). Se abrirá directamente el generador con el auto-guardado y la redacción por IA.
+
+Ajuste final opcional (el botón de la web comercial)
+En tu web comercial (index.html), comprueba que el botón de llamada a la acción (por ejemplo, «Empezar ahora» o «Acceder a la herramienta») tenga el atributo href="generador.html" para que los visitantes pasen de la portada a la aplicación al hacer clic.
+
+solo me aparece el generador, no aparece la web
+
+Esto ocurre casi siempre por una de estas dos razones: la caché de tu navegador sigue mostrando la versión anterior o el archivo index.html en GitHub aún no se ha reemplazado con la web comercial.
+
+Para identificar y solucionar el motivo en un minuto:
+
+1. Comprueba qué hay realmente subido en GitHub
+Abre este enlace directo para ver el contenido exacto de tu archivo en GitHub:
+👉 github.com/sbreina/web-prl/blob/main/index.html
+
+Fíjate en las primeras 5 a 10 líneas:
+
+Si dice <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>: El archivo en GitHub es el correcto (la web comercial). El problema es solo la caché de tu navegador o el retardo de despliegue.
+
+Si dice <title>PrevHostel Cloud Engine · Autogestión PRL Hostelería</title>[cite: 4]: En GitHub todavía sigue guardado el generador[cite: 4]. Tienes que editarlo o volver a arrastrar tu index.html comercial guardado en tu PC para sobrescribirlo.
+
+2. Limpiar la caché del navegador (si en GitHub ya está la web)
+Tanto GitHub Pages como Cloudflare guardan la versión anterior en la memoria del navegador durante varios minutos:
+
+Abre tu enlace web ([https://sbreina.github.io/web-prl/](https://sbreina.github.io/web-prl/) o tu enlace de Cloudflare).
+
+Pulsa en tu teclado Ctrl + F5 (o Ctrl + Shift + R) para forzar la recarga completa sin caché.
+
+Alternativamente, abre una ventana de Navegación de incógnito (Ctrl + Shift + N) y pega la dirección allí.
+
+3. Verificar si el despliegue ya terminó
+En GitHub, entra en la pestaña Actions (en la barra superior de tu repositorio). Si ves un círculo amarillo parpadeando, significa que GitHub aún está procesando los archivos; cuando se ponga en verde con un tick (✓), la nueva web ya estará visible públicamente.
+
+no abre github.com/sbreina/web-prl/blob/main/index.html, no existe
+
+Si ese enlace te da error 404 (no existe), suele deberse a dos motivos muy comunes al subir archivos desde la web de GitHub:
+
+GitHub creó una rama secundaria por defecto: Al hacer la subida, si estaba marcada la opción "Create a new branch and start a pull request", los archivos se guardaron en una rama aparte (como patch-1 o similar) y no en la principal.
+
+El archivo se guardó con otro nombre o extensión (por ejemplo, index.html.html o dentro de una subcarpeta).
+
+Para comprobar exactamente qué tienes en tu repositorio y dejarlo en su sitio:
+
+1
+1. Entrar a la portada de tu repositorio
+Página de inicio del proyecto
+Abre en tu navegador la dirección base de tu repositorio:
+
+👉 https://github.com/sbreina/web-prl
+Verification: Deberías ver la cabecera del proyecto con los botones verdes y la lista de archivos.
+
+2
+2. Comprobar el nombre de la rama activa
+Esquina superior izquierda
+Fíjate en el botón gris situado justo encima de la lista de archivos (a la izquierda de donde dice 1 Branch):
+
+Comprueba qué nombre exacto pone dentro de ese botón (por ejemplo: main, master, da71c05 o patch-1).
+
+Si no pone main, haz clic en ese botón y selecciona main en el menú desplegable.
+
+3
+3. Mirar qué archivos aparecen listados
+Lista central de archivos
+Revisa la lista central:
+
+¿Qué nombres de archivo ves en esa lista? (¿Aparece solo generador.html, está vacío o hay otro nombre?).
+
+Solución directa: Subir index.html de nuevo en la raíz
+Si en esa lista no aparece index.html, súbelo directamente asegurando la rama principal:
+
+En esa misma pantalla de github.com/sbreina/web-prl, pulsa en Add file 
+→ Upload files.
+
+Arrastra tu archivo index.html guardado en el ordenador.
+
+En la parte inferior, en el apartado Commit changes, fíjate bien en los dos círculos seleccionables:
+
+Marca el primer círculo: Commit directly to the main branch (o a la rama predeterminada que tengas).
+
+Pulsa el botón verde Commit changes.
+
+En la captura se aprecian con claridad dos detalles clave sobre lo que está ocurriendo:
+
+El despliegue de GitHub Pages aún no se había actualizado:
+
+En la columna derecha, en Deployments, indica github-pages 6 minutes ago, mientras que tu archivo index.html fue subido hace solo 2 minutes ago. GitHub Pages tarda entre 1 y 3 minutos en procesar el nuevo commit (0b8d898).   
+image_1ff281.png
++ 2
+
+El nombre de la aplicación técnica:
+
+Se ha subido como generador-prl-v5-cloud (2).html. Funciona, pero para que sea fácil de enlazar desde la web y no tenga espacios ni paréntesis en la URL, conviene renombrarlo a generador.html.   
+image_1ff281.png
+
+Paso 1: Comprobar la web principal (ya debería estar lista)
+Dado que ya han pasado varios minutos desde la subida:
+
+Abre tu web en una pestaña de incógnito o pulsa Ctrl + F5 para forzar la recarga:
+
+👉 https://sbreina.github.io/web-prl/
+
+Ya debe mostrarse tu página web comercial original.
+
+Paso 2: Renombrar el generador a un nombre limpio (generador.html)
+Para que la dirección web de la herramienta sea simplemente /generador.html:
+
+1
+1. Abrir el archivo del generador
+En github.com/sbreina/web-prl
+En la lista de archivos, haz clic sobre generador-prl-v5-cloud (2).html.
+Verification: Se abrirá el código del generador en pantalla.
+
+2
+2. Editar y cambiar el nombre
+Icono del lápiz
+Pulsa en el icono del lápiz (Edit this file) en la esquina superior derecha.
+
+Arriba, en la casilla del nombre del archivo donde pone generador-prl-v5-cloud (2).html, bórralo y escribe:
+
+generador.html
+Verification: El campo de texto mostrará exactamente generador.html.
+
+3
+3. Confirmar el cambio
+Guardar cambios
+Haz clic en el botón verde Commit changes... arriba a la derecha y confirma directamente en la rama main.
+Verification: El generador quedará accesible en [https://sbreina.github.io/web-prl/generador.html](https://sbreina.github.io/web-prl/generador.html).
+
+Con esto, tu web principal comercial queda en la raíz (/) y tu herramienta técnica en /generador.html.
+
+He probado en incógnito y con Ctrl + F5 pero sigue abriéndose el generador en lugar de la web comercial.
+
+El motivo por el que sigue abriéndose el generador es que el archivo que subiste desde tu carpeta de Descargas llamado index.html era en realidad el generador técnico que preparamos antes, por lo que volvió a sobrescribir la web comercial en GitHub.
+
+Tu web comercial original sigue guardada intacta en el historial de GitHub (en el commit da71c05). Para restaurarla en menos de dos minutos sin depender de archivos de tu ordenador:   
+image_207d8b.png
+
+1
+Copiar el texto de la web comercial limpia
+1. Obtener el código original
+Abre en una pestaña nueva este enlace directo al archivo original:
+
+👉 github.com/sbreina/web-prl/raw/da71c05/index.html
+
+Se abrirá una página de texto con el código de 895 líneas que empieza por <!DOCTYPE html> y contiene <title>PrevHostel | Autogestión Legal....
+
+Pulsa en tu teclado Ctrl + A para seleccionar todo el texto.
+
+Pulsa Ctrl + C para copiarlo al portapapeles.
+Verification: El código de la web comercial queda copiado en tu memoria.
+
+2
+Pegar el código en index.html
+2. Editor web de GitHub
+Entra directamente en el editor de tu archivo principal en GitHub:
+
+👉 github.com/sbreina/web-prl/edit/main/index.html
+
+Haz clic dentro del recuadro de texto del editor.
+
+Pulsa Ctrl + A y a continuación la tecla Supr (o Retroceso) para vaciar completamente el archivo.
+
+Pulsa Ctrl + V para pegar el código de tu web comercial que copiaste en el paso anterior.
+Verification: La línea 6 del editor debe mostrar <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>.
+
+3
+Guardar el archivo en la rama main
+3. Confirmar cambios
+Haz clic en el botón verde superior derecho Commit changes....
+
+Comprueba que esté marcada la opción Commit directly to the main branch.
+
+Pulsa en Commit changes.
+Verification: GitHub guardará la web comercial en la raíz del repositorio[cite: 8].
+
+4
+Comprobar la carga pública
+4. Verificación de publicación
+Espera 60 segundos a que finalice el despliegue automático de GitHub Pages[cite: 8] y abre:
+
+👉 https://sbreina.github.io/web-prl/[cite: 8]
+Verification: La pantalla de inicio mostrará la portada comercial de PrevHostel con sus textos de venta.
+
+Para abrir la aplicación técnica:
+
+La herramienta del generador sigue estando en tu repositorio bajo el nombre generador-prl-v5-cloud (2).html[cite: 8], accesible en:
+
+[https://sbreina.github.io/web-prl/generador-prl-v5-cloud%20(2).html](https://sbreina.github.io/web-prl/generador-prl-v5-cloud%20(2).html)[cite: 8].
+
+no cargó la web
+
+Para identificar por qué no carga y resolverlo de inmediato, realiza estas comprobaciones directas:
+
+1
+Comprobar el estado del despliegue en GitHub Actions
+1 min · GitHub
+Entra en la pestaña de despliegues:
+
+👉 https://github.com/sbreina/web-prl/actions
+
+Si ves un círculo amarillo parpadeando: El servidor de GitHub aún está procesando los archivos. Espera unos 60 segundos a que termine.
+
+Si ves un tick verde (✓ pages build and deployment): El despliegue ha finalizado con éxito.
+
+Si ves una cruz roja (✗): Hubo un error de sintaxis o compilación en el archivo.
+Verification: El último flujo debe mostrar una marca de verificación verde (✓).
+
+2
+Revisar qué contiene index.html en main
+30 s · Verificación de rama
+Abre directamente el archivo en GitHub:
+
+👉 https://github.com/sbreina/web-prl/blob/main/index.html
+
+Revisa las primeras 10 líneas de código.
+
+Debe aparecer: <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>[cite: 6].
+
+Verification: Si en el título aparece PrevHostel Cloud Engine[cite: 4], el archivo guardado sigue siendo el generador y no la página de inicio.
+
+3
+Forzar la recarga sin caché
+30 s · Navegador
+Abre la URL pública en una ventana privada/incógnito:
+
+👉 https://sbreina.github.io/web-prl/[cite: 8]
+
+En ordenador, pulsa Ctrl + F5 (o Cmd + Shift + R en Mac) para evitar que el navegador muestre la versión guardada en memoria.
+Verification: La portada debe cargar con los encabezados comerciales de PrevHostel.
+
+no aparece Debe aparecer: <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>[cite: 6].
+
+Si ese título no aparece en tu archivo actual, confirma al 100% que el fichero guardado en tu ordenador y subido recientemente era otra copia del generador técnico (PrevHostel Cloud Engine) y no la web comercial original.   
+index.html
+
+La web comercial original de 895 líneas sigue guardada en el historial de GitHub dentro del commit da71c05. Para recuperarla y dejarla activa como página de inicio, realiza este procedimiento:   
+image_207d8b.png
+
+1
+Acceder al archivo histórico en GitHub
+1. Abrir la versión original
+Abre en tu navegador este enlace directo a la versión guardada en ese commit:
+👉 https://github.com/sbreina/web-prl/blob/da71c05/index.html
+Verification: Al abrirse la página, revisa la parte superior del visor de código; verás que la línea 6 muestra exactamente:
+<title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>.
+
+2
+Copiar el contenido al portapapeles
+2. Copiar el código
+En la barra de herramientas superior derecha del recuadro de código (al lado de los botones Raw y Blame):
+
+Haz clic en el icono de los dos rectángulos superpuestos (Copy raw file).
+Verification: Aparecerá una marca de verificación verde (✓) confirmando que las 895 líneas de la web comercial están copiadas en tu memoria.
+
+3
+Entrar a editar el index.html actual
+3. Abrir el editor de la rama main
+Entra en el editor web de tu archivo principal:
+👉 https://github.com/sbreina/web-prl/edit/main/index.html
+Verification: Verás el editor de texto de GitHub con el código actual que contiene la herramienta técnica.
+
+4
+Pegar el código de la web comercial
+4. Reemplazar y verificar
+Haz clic dentro del recuadro de texto del editor.
+
+Pulsa Ctrl + A en tu teclado y presiona la tecla Supr (o Retroceso) para vaciar completamente el recuadro.
+
+Pulsa Ctrl + V para pegar el código original copiado en el paso 2.
+Verification: Comprueba visualmente que en la línea 6 del editor aparece ahora:
+<title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>.
+
+5
+Confirmar el cambio en GitHub
+5. Guardar
+Haz clic en el botón verde superior derecho Commit changes....
+
+Asegúrate de que esté marcado el círculo Commit directly to the main branch.
+
+Haz clic en el botón verde Commit changes.
+Verification: El repositorio volverá a la pantalla principal mostrando index.html actualizado con la indicación de fecha "now" o "just now"[cite: 8].
+
+En cuanto guardes el commit, GitHub Pages y Cloudflare detectarán el cambio y publicarán la portada comercial original en tu dirección web[cite: 8].
+
+Ya guardé los cambios. ¿Cómo compruebo en el navegador que ya carga la web comercial?
+
+Para comprobar que la web comercial ya está visible y funcionando públicamente en tu navegador:
+
+1
+Acceso directo sin memoria caché
+1. Abrir la URL en ventana de incógnito
+Abre una ventana privada o de incógnito (Ctrl + Shift + N en Chrome/Edge) y pega la dirección de tu plataforma:
+
+Enlace de GitHub Pages: [https://sbreina.github.io/web-prl/](https://sbreina.github.io/web-prl/)[cite: 8]
+
+Enlace de Cloudflare Pages/Workers: [https://prevhostel.hsqe-hosteleria.workers.dev](https://prevhostel.hsqe-hosteleria.workers.dev)[cite: 2] (o tu subdominio .pages.dev).
+Verification: El título de la pestaña del navegador debe mostrar «PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes» y en la pantalla principal debe verse la presentación comercial con la cabecera, textos informativos y llamadas a la acción, en lugar de los formularios directos del generador.
+
+2
+Limpieza de caché en la ventana normal
+2. Forzar recarga si aún ves el generador
+Si abres la web en tu navegador habitual y continúa mostrándose la interfaz técnica de formularios:
+
+Pulsa Ctrl + F5 (o Ctrl + Shift + R) de forma repetida.
+
+Esto obliga al navegador a desechar los archivos antiguos en memoria y descargar la versión recién guardada en el servidor.
+
+3
+Verificar la navegación a la herramienta
+3. Comprobar el enlace hacia el generador
+Una vez cargada la web comercial, comprueba el acceso a la aplicación técnica:
+
+Pulsa en el botón principal de la página (por ejemplo, «Empezar ahora» o «Acceder»).
+
+Si el botón está vinculado a generador.html o abres directamente [https://sbreina.github.io/web-prl/generador.html](https://sbreina.github.io/web-prl/generador.html)[cite: 8], se abrirá la herramienta interactiva de redacción técnica con IA y auto-guardado local.
+
+Ahora si
+
+La portada comercial ya está operativa en la raíz del proyecto. Para dejar el sistema completamente conectado y accesible para tus clientes, solo quedan dos ajustes directos en tu repositorio:
+
+1. Renombrar el generador a una URL limpia
+En tu lista de archivos el generador quedó guardado como generador-prl-v5-cloud (2).html. Conviene cambiarlo a generador.html para que su enlace oficial sea directo y fácil de recordar ([https://sbreina.github.io/web-prl/generador.html](https://sbreina.github.io/web-prl/generador.html)):   
+image_1ff281.png
+
+1
+Entrar en el generador en GitHub
+1. Abrir archivo
+En github.com/sbreina/web-prl, haz clic sobre generador-prl-v5-cloud (2).html.
+
+2
+Cambiar el nombre del fichero
+2. Modo edición
+Haz clic en el icono del lápiz (Edit this file) en la esquina superior derecha.
+
+En la casilla superior donde aparece el nombre del archivo, bórralo y escribe exactamente:
+
+generador.html
+
+3
+Guardar el cambio en main
+3. Confirmar
+Haz clic en el botón verde Commit changes... arriba a la derecha y confirma directamente en la rama main.
+Verification: En la lista de archivos de GitHub el documento aparecerá listado como generador.html.
+
+2. Vincular el botón de la web con el generador
+Para que los visitantes de tu página comercial puedan entrar directamente a la herramienta al pulsar el botón principal (por ejemplo, «Empezar ahora», «Crear plan» o «Acceder al Generador»):
+
+Entra a editar tu web principal: github.com/sbreina/web-prl/edit/main/index.html.
+
+Pulsa Ctrl + F y busca la etiqueta <a  del botón principal de llamada a la acción (CTA).
+
+Asegúrate de que su enlace apunte a:
+
+HTML
+href="generador.html"
+Guarda con Commit changes.
+
+Con esto, quien visite tu dirección web ([https://sbreina.github.io/web-prl/](https://sbreina.github.io/web-prl/) o tu dominio de Cloudflare) verá la página de presentación, y al pulsar el botón entrará directamente a la aplicación técnica con el autoguardado, el generador de IA y el bloque de asistencia presencial a 60 €/h.
+
+No encuentro dónde está el botón en el código de index.html para poner href='generador.html'.
+
+Para localizar los botones en el editor de GitHub sin tener que revisar las casi 900 líneas a mano, utiliza el buscador integrado del editor (Ctrl + F).
+
+En una página web comercial suele haber dos botones clave: uno en el menú superior (cabecera) y otro en el bloque principal de bienvenida (el banner central o Hero section).
+
+Paso 1. Buscar en el editor de GitHub
+Entra en el editor web de tu archivo:
+
+👉 github.com/sbreina/web-prl/edit/main/index.html
+
+Haz clic dentro del cuadro negro donde está el código y presiona Ctrl + F (o Cmd + F si usas Mac).
+
+Busca alguno de estos términos:
+
+Por el texto visible del botón:
+
+Escribe en el buscador el texto exacto que tú lees en el botón cuando ves la web. Lo más habitual es:
+
+Empezar
+
+Acceder
+
+Generar
+
+Comenzar
+
+Crear documentación
+
+Por el enlace vacío habitual:
+
+Si el botón aún no llevaba a ningún sitio, estará escrito como enlace en blanco. Escribe en el buscador:
+
+href="#"
+
+Paso 2. Qué aspecto tiene en el código y cómo cambiarlo
+Cuando el buscador se detenga en la línea, verás una etiqueta <a> parecida a esta:
+
+En el menú superior (cabecera):
+HTML
+<!-- ANTES -->
+<a href="#" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium ...">
+  Acceder al Generador
+</a>
+
+<!-- DESPUÉS -->
+<a href="generador.html" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium ...">
+  Acceder al Generador
+</a>
+En el bloque central (Hero / Cabecera principal):
+HTML
+<!-- ANTES -->
+<a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold ...">
+  Comenzar Autogestión PRL
+</a>
+
+<!-- DESPUÉS -->
+<a href="generador.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold ...">
+  Comenzar Autogestión PRL
+</a>
+Solo tienes que sustituir lo que haya dentro de las comillas de href="..." por generador.html.
+
+Paso 3. Guardar el cambio
+Haz clic en el botón verde superior derecho Commit changes....
+
+Pulsa en Commit changes para guardar en la rama main.
+
+Nota: Si en tu repositorio el generador todavía se llama generador-prl-v5-cloud (2).html, pon href="generador.html" en la web y renombra el archivo en GitHub a generador.html para que coincidan exactamente.
+
+sustituyelo tu y me lo das para copiar y pegar: <!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>
+
+  <meta name="description" content="Protege tu bar ante la Inspección de Trabajo. Software de autogestión de Prevención de Riesgos Laborales para hostelería conforme al Art. 11 del RD 39/1997.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+
+      --bg: #090b10;
+
+      --card-bg: #121620;
+
+      --card-border: #1e2638;
+
+      --card-hover: #263147;
+
+      --accent: #2563eb;
+
+      --accent-glow: rgba(37, 99, 235, 0.35);
+
+      --accent-light: #60a5fa;
+
+      --warning: #f59e0b;
+
+      --danger: #ef4444;
+
+      --success: #10b981;
+
+      --text-main: #f8fafc;
+
+      --text-muted: #94a3b8;
+
+      --text-sub: #cbd5e1;
+
+      --font-heading: 'Space Grotesk', sans-serif;
+
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    }
+
+
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+
+
+    body {
+
+      background-color: var(--bg);
+
+      color: var(--text-main);
+
+      font-family: var(--font-body);
+
+      line-height: 1.6;
+
+      overflow-x: hidden;
+
+      -webkit-font-smoothing: antialiased;
+
+    }
+
+
+
+    /* Container & Layout */
+
+    .container {
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 0 24px;
+
+    }
+
+
+
+    /* Navbar */
+
+    nav {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      background: rgba(9, 11, 16, 0.85);
+
+      backdrop-filter: blur(16px);
+
+      border-bottom: 1px solid var(--card-border);
+
+      padding: 16px 0;
+
+    }
+
+    .nav-container {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+    }
+
+    .logo {
+
+      font-family: var(--font-heading);
+
+      font-size: 1.35rem;
+
+      font-weight: 700;
+
+      color: var(--text-main);
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      text-decoration: none;
+
+    }
+
+    .logo-badge {
+
+      background: var(--accent);
+
+      color: #fff;
+
+      font-size: 0.65rem;
+
+      padding: 3px 8px;
+
+      border-radius: 20px;
+
+      text-transform: uppercase;
+
+      font-weight: 800;
+
+      letter-spacing: 0.05em;
+
+    }
+
+    .nav-links {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 28px;
+
+    }
+
+    .nav-links a {
+
+      color: var(--text-muted);
+
+      text-decoration: none;
+
+      font-size: 0.9rem;
+
+      font-weight: 600;
+
+      transition: color 0.2s;
+
+    }
+
+    .nav-links a:hover {
+
+      color: var(--text-main);
+
+    }
+
+    .btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      padding: 12px 24px;
+
+      border-radius: 10px;
+
+      font-size: 0.92rem;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition: all 0.25s ease;
+
+      border: 1px solid transparent;
+
+    }
+
+    .btn-primary {
+
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+      color: #fff;
+
+      box-shadow: 0 4px 20px var(--accent-glow);
+
+    }
+
+    .btn-primary:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+
+    }
+
+    .btn-secondary {
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--card-border);
+
+      color: var(--text-main);
+
+    }
+
+    .btn-secondary:hover {
+
+      border-color: var(--accent);
+
+      background: var(--card-hover);
+
+    }
+
+
+
+    /* Hero Section */
+
+    .hero {
+
+      padding: 90px 0 70px;
+
+      text-align: center;
+
+      position: relative;
+
+    }
+
+    .hero::before {
+
+      content: '';
+
+      position: absolute;
+
+      top: -100px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 700px;
+
+      height: 400px;
+
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(9, 11, 16, 0) 70%);
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+    .hero-content {
+
+      position: relative;
+
+      z-index: 1;
+
+      max-width: 920px;
+
+      margin: 0 auto;
+
+    }
+
+    .hero-tag {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      background: rgba(239, 68, 68, 0.12);
+
+      border: 1px solid rgba(239, 68, 68, 0.35);
+
+      color: #f87171;
+
+      padding: 6px 16px;
+
+      border-radius: 30px;
+
+      font-size: 0.8rem;
+
+      font-weight: 700;
+
+      margin-bottom: 24px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.05em;
+
+    }
+
+    .hero h1 {
+
+      font-family: var(--font-heading);
+
+      font-size: 3.1rem;
+
+      line-height: 1.15;
+
+      font-weight: 800;
+
+      margin-bottom: 22px;
+
+      letter-spacing: -0.02em;
+
+    }
+
+    .hero h1 span.gradient {
+
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+
+      -webkit-background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+    }
+
+    .hero p.lead {
+
+      font-size: 1.18rem;
+
+      color: var(--text-sub);
+
+      max-width: 780px;
+
+      margin: 0 auto 34px;
+
+      line-height: 1.7;
+
+    }
+
+    .hero-cta-group {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 16px;
+
+      margin-bottom: 40px;
+
+      flex-wrap: wrap;
+
+    }
+
+    .hero-badges {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 28px;
+
+      color: var(--text-muted);
+
+      font-size: 0.82rem;
+
+      flex-wrap: wrap;
+
+    }
+
+    .hero-badges span {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+    }
+
+    .hero-badges span svg {
+
+      color: var(--success);
+
+    }
+
+
+
+    /* Problem / Urgency Section (Cold Shower) */
+
+    .section-urgency {
+
+      padding: 70px 0;
+
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.04) 0%, rgba(9, 11, 16, 0) 100%);
+
+      border-top: 1px solid rgba(239, 68, 68, 0.15);
+
+      border-bottom: 1px solid var(--card-border);
+
+    }
+
+    .section-title {
+
+      text-align: center;
+
+      max-width: 750px;
+
+      margin: 0 auto 50px;
+
+    }
+
+    .section-title .badge {
+
+      font-size: 0.72rem;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+
+      color: var(--accent-light);
+
+      background: rgba(37, 99, 235, 0.12);
+
+      padding: 4px 12px;
+
+      border-radius: 20px;
+
+      display: inline-block;
+
+      margin-bottom: 12px;
+
+    }
+
+    .section-title h2 {
+
+      font-family: var(--font-heading);
+
+      font-size: 2.3rem;
+
+      font-weight: 700;
+
+      line-height: 1.25;
+
+      letter-spacing: -0.01em;
+
+    }
+
+    .section-title p {
+
+      color: var(--text-muted);
+
+      margin-top: 12px;
+
+      font-size: 1rem;
+
+    }
+
+
+
+    .myths-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 24px;
+
+    }
+
+    .myth-card {
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--card-border);
+
+      border-radius: 14px;
+
+      padding: 30px 24px;
+
+      position: relative;
+
+      transition: border-color 0.25s ease;
+
+    }
+
+    .myth-card:hover {
+
+      border-color: rgba(239, 68, 68, 0.4);
+
+    }
+
+    .myth-header {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 16px;
+
+    }
+
+    .myth-pill {
+
+      background: rgba(239, 68, 68, 0.15);
+
+      color: #f87171;
+
+      font-size: 0.72rem;
+
+      font-weight: 800;
+
+      padding: 3px 10px;
+
+      border-radius: 12px;
+
+      text-transform: uppercase;
+
+    }
+
+    .myth-card h3 {
+
+      font-size: 1.12rem;
+
+      font-weight: 700;
+
+      margin-bottom: 12px;
+
+      line-height: 1.4;
+
+      color: #fca5a5;
+
+    }
+
+    .myth-card p.reality {
+
+      font-size: 0.9rem;
+
+      color: var(--text-sub);
+
+      line-height: 1.6;
+
+    }
+
+    .reality-tag {
+
+      font-weight: 700;
+
+      color: var(--success);
+
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 0.8rem;
+
+      text-transform: uppercase;
+
+    }
+
+
+
+    /* Features / The Solution */
+
+    .features-section {
+
+      padding: 90px 0;
+
+    }
+
+    .features-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 28px;
+
+    }
+
+    .feature-card {
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--card-border);
+
+      border-radius: 16px;
+
+      padding: 36px 30px;
+
+      transition: all 0.25s ease;
+
+      position: relative;
+
+    }
+
+    .feature-card:hover {
+
+      border-color: var(--accent);
+
+      transform: translateY(-3px);
+
+    }
+
+    .feature-icon {
+
+      width: 52px;
+
+      height: 52px;
+
+      border-radius: 12px;
+
+      background: rgba(37, 99, 235, 0.15);
+
+      border: 1px solid rgba(37, 99, 235, 0.3);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: var(--accent-light);
+
+      margin-bottom: 20px;
+
+      font-size: 1.4rem;
+
+    }
+
+    .feature-card h3 {
+
+      font-size: 1.25rem;
+
+      font-weight: 700;
+
+      margin-bottom: 12px;
+
+      font-family: var(--font-heading);
+
+    }
+
+    .feature-card p {
+
+      color: var(--text-muted);
+
+      font-size: 0.92rem;
+
+      line-height: 1.65;
+
+    }
+
+    .feature-points {
+
+      margin-top: 16px;
+
+      list-style: none;
+
+    }
+
+    .feature-points li {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-size: 0.86rem;
+
+      color: var(--text-sub);
+
+      margin-bottom: 8px;
+
+    }
+
+    .feature-points li svg {
+
+      color: var(--accent-light);
+
+      flex-shrink: 0;
+
+    }
+
+
+
+    /* Comparison Table */
+
+    .compare-section {
+
+      padding: 80px 0;
+
+      background: #0d1017;
+
+      border-top: 1px solid var(--card-border);
+
+      border-bottom: 1px solid var(--card-border);
+
+    }
+
+    .compare-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin-top: 40px;
+
+      background: var(--card-bg);
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--card-border);
+
+    }
+
+    .compare-table th, .compare-table td {
+
+      padding: 16px 20px;
+
+      text-align: left;
+
+      border-bottom: 1px solid var(--card-border);
+
+      font-size: 0.92rem;
+
+    }
+
+    .compare-table th {
+
+      background: #161b26;
+
+      font-weight: 700;
+
+      color: var(--text-main);
+
+      font-size: 0.85rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.05em;
+
+    }
+
+    .compare-table th.highlight {
+
+      background: rgba(37, 99, 235, 0.2);
+
+      color: #93c5fd;
+
+      border-left: 2px solid var(--accent);
+
+      border-right: 2px solid var(--accent);
+
+    }
+
+    .compare-table td.highlight {
+
+      background: rgba(37, 99, 235, 0.05);
+
+      border-left: 2px solid var(--accent);
+
+      border-right: 2px solid var(--accent);
+
+      font-weight: 600;
+
+      color: #93c5fd;
+
+    }
+
+    .status-check { color: var(--success); font-weight: 700; }
+
+    .status-cross { color: var(--danger); font-weight: 700; }
+
+
+
+    /* Pricing Section */
+
+    .pricing-section {
+
+      padding: 90px 0;
+
+    }
+
+    .pricing-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 32px;
+
+      max-width: 900px;
+
+      margin: 0 auto;
+
+    }
+
+    .pricing-card {
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--card-border);
+
+      border-radius: 18px;
+
+      padding: 40px 32px;
+
+      position: relative;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+
+      transition: all 0.25s ease;
+
+    }
+
+    .pricing-card.featured {
+
+      border-color: var(--accent);
+
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+
+    }
+
+    .pricing-card.featured::before {
+
+      content: 'MÁS POPULAR · CENTRO ÚNICO';
+
+      position: absolute;
+
+      top: -13px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background: var(--accent);
+
+      color: #fff;
+
+      font-size: 0.68rem;
+
+      font-weight: 800;
+
+      letter-spacing: 0.08em;
+
+      padding: 4px 14px;
+
+      border-radius: 20px;
+
+    }
+
+    .pricing-card h3 {
+
+      font-size: 1.35rem;
+
+      font-weight: 700;
+
+      font-family: var(--font-heading);
+
+    }
+
+    .pricing-card p.desc {
+
+      color: var(--text-muted);
+
+      font-size: 0.85rem;
+
+      margin: 8px 0 24px;
+
+    }
+
+    .pricing-price {
+
+      font-size: 3rem;
+
+      font-weight: 800;
+
+      font-family: var(--font-heading);
+
+      margin-bottom: 6px;
+
+    }
+
+    .pricing-price span {
+
+      font-size: 1rem;
+
+      color: var(--text-muted);
+
+      font-weight: 500;
+
+    }
+
+    .pricing-features {
+
+      list-style: none;
+
+      margin: 28px 0 34px;
+
+      border-top: 1px solid var(--card-border);
+
+      padding-top: 24px;
+
+    }
+
+    .pricing-features li {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-size: 0.9rem;
+
+      color: var(--text-sub);
+
+      margin-bottom: 12px;
+
+    }
+
+    .pricing-features li svg {
+
+      color: var(--success);
+
+      flex-shrink: 0;
+
+    }
+
+
+
+    /* FAQ Section */
+
+    .faq-section {
+
+      padding: 80px 0;
+
+      border-top: 1px solid var(--card-border);
+
+    }
+
+    .faq-grid {
+
+      max-width: 800px;
+
+      margin: 0 auto;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 16px;
+
+    }
+
+    .faq-item {
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--card-border);
+
+      border-radius: 12px;
+
+      padding: 22px 26px;
+
+      cursor: pointer;
+
+      transition: border-color 0.2s;
+
+    }
+
+    .faq-item:hover {
+
+      border-color: var(--card-hover);
+
+    }
+
+    .faq-question {
+
+      font-size: 1.05rem;
+
+      font-weight: 700;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+    }
+
+    .faq-answer {
+
+      color: var(--text-muted);
+
+      font-size: 0.92rem;
+
+      margin-top: 12px;
+
+      line-height: 1.6;
+
+    }
+
+
+
+    /* Final CTA */
+
+    .final-cta {
+
+      padding: 90px 0;
+
+      background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.2) 0%, rgba(9, 11, 16, 1) 70%);
+
+      text-align: center;
+
+    }
+
+    .final-cta h2 {
+
+      font-family: var(--font-heading);
+
+      font-size: 2.5rem;
+
+      font-weight: 800;
+
+      margin-bottom: 18px;
+
+    }
+
+    .final-cta p {
+
+      color: var(--text-sub);
+
+      font-size: 1.1rem;
+
+      max-width: 650px;
+
+      margin: 0 auto 36px;
+
+    }
+
+
+
+    /* Footer */
+
+    footer {
+
+      border-top: 1px solid var(--card-border);
+
+      padding: 40px 0 30px;
+
+      color: var(--text-muted);
+
+      font-size: 0.84rem;
+
+      text-align: center;
+
+    }
+
+    footer a {
+
+      color: var(--text-sub);
+
+      text-decoration: none;
+
+    }
+
+
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+
+      .hero h1 { font-size: 2.3rem; }
+
+      .myths-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+
+      .nav-links { display: none; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <!-- Navigation -->
+
+  <nav>
+
+    <div class="container nav-container">
+
+      <a href="#" class="logo">
+
+        PrevHostel <span class="logo-badge">Hostelería 100% Legal</span>
+
+      </a>
+
+      <div class="nav-links">
+
+        <a href="#urgencia">¿Por qué tú?</a>
+
+        <a href="#solucion">La Solución</a>
+
+        <a href="#comparativa">Comparativa</a>
+
+        <a href="#precios">Planes</a>
+
+        <a href="#faq">Preguntas</a>
+
+      </div>
+
+      <a href="#precios" class="btn btn-primary">Empezar Ahora</a>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- Hero Section -->
+
+  <section class="hero">
+
+    <div class="container hero-content">
+
+      <div class="hero-tag">
+
+        ⚠️ Aviso Legal Inmediato (Art. 11 RD 39/1997)
+
+      </div>
+
+      <h1>El responsable penal de la PRL en tu bar <span class="gradient">eres TÚ</span>. No tu gestoría.</h1>
+
+      <p class="lead">
+
+        Si un camarero se resbala o un cocinero se quema con la freidora, la Inspección de Trabajo y el Código Penal te investigarán a ti como titular. <strong>PrevHostel</strong> es la primera plataforma de autogestión guiada que blinda tu bar en 15 minutos, sin pagar 1.200 € al año a un SPA.
+
+      </p>
+
+      <div class="hero-cta-group">
+
+        <a href="#precios" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
+
+          Autogestionar mi Bar en 15 Minutos →
+
+        </a>
+
+        <a href="#urgencia" class="btn btn-secondary" style="padding: 16px 28px;">
+
+          Ver Qué Exige la Inspección
+
+        </a>
+
+      </div>
+
+      <div class="hero-badges">
+
+        <span>
+
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+
+          Hasta 25 trabajadores (Centro único)
+
+        </span>
+
+        <span>
+
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+
+          Notificación formal de exención de auditoría
+
+        </span>
+
+        <span>
+
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+
+          Firma táctil de EPIs en móvil
+
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Problem / Reality Check (The Need Creator) -->
+
+  <section class="section-urgency" id="urgencia">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <span class="badge">Realidad Inspectora</span>
+
+        <h2>Las 3 falsas seguridades que le cuestan el negocio a un hostelero</h2>
+
+        <p>El 87% de los bares y restaurantes sancionados creían que "lo tenían todo cubierto". La realidad jurídica es tajante:</p>
+
+      </div>
+
+
+
+      <div class="myths-grid">
+
+        <div class="myth-card">
+
+          <div class="myth-header">
+
+            <span class="myth-pill">Error Fatal #1</span>
+
+          </div>
+
+          <h3>"Mi gestoría laboral me lleva todos los papeles"</h3>
+
+          <p class="reality">
+
+            <span class="reality-tag">La Ley:</span>
+
+            Las gestorías gestionan nóminas e impuestos, pero <strong>no son un Servicio de Prevención</strong>. La Ley de Prevención (LPRL) prohíbe que un gestor asuma tu seguridad laboral. Si hay una inspección, tu gestoría no responde: la multa recae sobre tu CIF y tu patrimonio personal.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="myth-card">
+
+          <div class="myth-header">
+
+            <span class="myth-pill">Error Fatal #2</span>
+
+          </div>
+
+          <h3>"Firmé un contrato con un SPA hace años y ya está"</h3>
+
+          <p class="reality">
+
+            <span class="reality-tag">La Ley:</span>
+
+            Tener una carpeta olvidada en el despacho no te salva. Si no demuestras la <strong>entrega física y firmada de EPIs</strong> a cada trabajador que entra, o si cambiaste de freidora o máquina y no actualizaste el documento, la Inspección lo considera <em>infracción grave</em> (desde 2.451 € a 49.180 €).
+
+          </p>
+
+        </div>
+
+
+
+        <div class="myth-card">
+
+          <div class="myth-header">
+
+            <span class="myth-pill">Error Fatal #3</span>
+
+          </div>
+
+          <h3>"Un bar pequeño no tiene derecho a autogestionarse"</h3>
+
+          <p class="reality">
+
+            <span class="reality-tag">La Ley:</span>
+
+            <strong>Es totalmente falso.</strong> El Real Decreto 39/1997 faculta al empresario con curso básico a asumir personalmente la prevención hasta 25 empleados en centro único. Los SPAs tradicionales te cobran cuotas anuales desorbitadas por un documento estándar que tú mismo puedes autogestionar.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- The Solution -->
+
+  <section class="features-section" id="solucion">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <span class="badge">Autogestión Completa</span>
+
+        <h2>Todo lo que exige la Inspección de Trabajo en un solo lugar</h2>
+
+        <p>PrevHostel guía al titular paso a paso para generar, firmar y mantener en regla su sistema preventivo sin intermediarios costosos.</p>
+
+      </div>
+
+
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+
+          <div class="feature-icon">📋</div>
+
+          <h3>Evaluación EVL y Medidas de Emergencia (INSST)</h3>
+
+          <p>Cuestionario guiado por equipamiento real de cocina (freidoras, planchas, cortadoras, gas, campanas). Matriz técnica de riesgos P×G y medidas concretas conforme a los estándares oficiales del Instituto Nacional de Seguridad y Salud en el Trabajo.</p>
+
+          <ul class="feature-points">
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Redacción en primera persona bajo asunción legal del titular.</li>
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Plan de emergencias, vías de evacuación y conato en cocina.</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+          <div class="feature-icon">✍️</div>
+
+          <h3>Libro Digital de EPIs con Firma Táctil en Móvil</h3>
+
+          <p>El punto flaco de cualquier bar ante una inspección es la falta de recibos de EPIs. PrevHostel te permite elegir al trabajador y que firme con el dedo en la pantalla la entrega del calzado antideslizante o guantes térmicos al instante.</p>
+
+          <ul class="feature-points">
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Firma manuscrita digitalizada con fecha y hora exacta.</li>
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Impresión en 1 clic del Libro Oficial de Entrega de EPIs.</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+          <div class="feature-icon">📦</div>
+
+          <h3>Coordinación CAE para Reparto y Técnicos (QR)</h3>
+
+          <p>Si el repartidor de barriles de cerveza o el técnico que limpia la campana extractora sufren un accidente en tu local, tienes responsabilidad civil subsidiaria salvo que acredites la Coordinación de Actividades Empresariales (Art. 24 LPRL).</p>
+
+          <ul class="feature-points">
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Ficha A4 para fijar en barra o zona de descarga con código QR.</li>
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Exención de responsabilidad por imprudencia de terceros.</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+          <div class="feature-icon">🏛️</div>
+
+          <h3>Trámite Oficial: Exención de Auditoría ante la CCAA</h3>
+
+          <p>Las empresas que autogestionan la PRL están obligadas a notificar formalmente la exención de auditoría a la Dirección General de Trabajo de su Comunidad Autónoma. PrevHostel genera la solicitud administrativa redactada lista para registro.</p>
+
+          <ul class="feature-points">
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Fundamentada en el Art. 29 y Anexo II del RD 39/1997.</li>
+
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Evita la sanción por carecer de auditoría periódica obligatoria.</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Comparison Section -->
+
+  <section class="compare-section" id="comparativa">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <span class="badge">Comparativa Real</span>
+
+        <h2>¿Por qué seguir atado a un Servicio de Prevención tradicional?</h2>
+
+        <p>Compara el modelo obsoleto de los grandes SPAs frente a la autogestión legal moderna.</p>
+
+      </div>
+
+
+
+      <div style="overflow-x: auto;">
+
+        <table class="compare-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Característica / Obligación</th>
+
+              <th>SPA Tradicional</th>
+
+              <th>No hacer nada (Riesgo)</th>
+
+              <th class="highlight">PrevHostel (Autogestión)</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>Coste anual aproximado</td>
+
+              <td>800 € – 1.400 € / año</td>
+
+              <td>0 € (hasta la multa de 40.000 €)</td>
+
+              <td class="highlight"><strong>Desde 79 € / año</strong></td>
+
+            </tr>
+
+            <tr>
+
+              <td>Validez legal ante la ITSS</td>
+
+              <td><span class="status-check">✓ Sí</span></td>
+
+              <td><span class="status-cross">✗ Ilegal</span></td>
+
+              <td class="highlight"><span class="status-check">✓ 100% Legal (Art. 11 RD 39/97)</span></td>
+
+            </tr>
+
+            <tr>
+
+              <td>Firma de EPIs en tiempo real con camareros</td>
+
+              <td><span class="status-cross">✗ En papel perdido</span></td>
+
+              <td><span class="status-cross">✗ Inexistente</span></td>
+
+              <td class="highlight"><span class="status-check">✓ En pantalla móvil al instante</span></td>
+
+            </tr>
+
+            <tr>
+
+              <td>Ficha CAE para repartidores de cerveza/fresco</td>
+
+              <td><span class="status-cross">✗ Te cobran extra</span></td>
+
+              <td><span class="status-cross">✗ Inexistente</span></td>
+
+              <td class="highlight"><span class="status-check">✓ Incluida con cartel y QR</span></td>
+
+            </tr>
+
+            <tr>
+
+              <td>Notificación de exención de auditoría redactada</td>
+
+              <td><span class="status-cross">✗ Rara vez la tramitan</span></td>
+
+              <td><span class="status-cross">✗ Sanción grave</span></td>
+
+              <td class="highlight"><span class="status-check">✓ Redactada lista para sede electrónica</span></td>
+
+            </tr>
+
+            <tr>
+
+              <td>Tiempo necesario del hostelero</td>
+
+              <td>Soportar visitas lentas y papeles</td>
+
+              <td>0 min (hasta el juzgado)</td>
+
+              <td class="highlight"><strong>15 minutos desde el móvil</strong></td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Pricing -->
+
+  <section class="pricing-section" id="precios">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <span class="badge">Inversión Mínima</span>
+
+        <h2>Un año de tranquilidad legal por menos de lo que cuesta una cena</h2>
+
+        <p>Sin permanencias ocultas. Acceso inmediato a la plataforma para generar tu pack hoy mismo.</p>
+
+      </div>
+
+
+
+      <div class="pricing-grid">
+
+        <!-- Plan Micro -->
+
+        <div class="pricing-card">
+
+          <div>
+
+            <h3>Microhostelería</h3>
+
+            <p class="desc">Para bares, cafeterías y pequeños locales con menos de 10 trabajadores.</p>
+
+            <div class="pricing-price">79 € <span>/ año</span></div>
+
+            <ul class="pricing-features">
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Generador EVL oficial y Emergencias</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Libro Digital de EPIs con firma en pantalla</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cartelería y ficha CAE para repartidores</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Notificación oficial exención de auditoría</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Calendario de vencimientos de extintores y campana</li>
+
+            </ul>
+
+          </div>
+
+          <a href="#" class="btn btn-secondary" style="width: 100%;">Elegir Plan Micro</a>
+
+        </div>
+
+
+
+        <!-- Plan Pyme -->
+
+        <div class="pricing-card featured">
+
+          <div>
+
+            <h3>Pyme Hostelería</h3>
+
+            <p class="desc">Para restaurantes, asadores o locales con entre 10 y 25 empleados en centro único.</p>
+
+            <div class="pricing-price">129 € <span>/ año</span></div>
+
+            <ul class="pricing-features">
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> <strong>Todo lo del Plan Micro incluido</strong></li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Habilitado legalmente hasta 25 empleados (Art. 11)</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Módulo de turnos rotativos, noche y picos de servicio</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Plan de formación teórica específica por puesto (Art. 19)</li>
+
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Actualizaciones normativas automáticas todo el año</li>
+
+            </ul>
+
+          </div>
+
+          <a href="#" class="btn btn-primary" style="width: 100%;">Elegir Plan Pyme</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FAQ -->
+
+  <section class="faq-section" id="faq">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <span class="badge">Respuestas Claras</span>
+
+        <h2>Preguntas Frecuentes de Hosteleros</h2>
+
+      </div>
+
+
+
+      <div class="faq-grid">
+
+        <div class="faq-item">
+
+          <div class="faq-question">¿Es 100% legal que yo me haga mi propia prevención de riesgos?</div>
+
+          <div class="faq-answer">
+
+            Sí, con total respaldo del <strong>artículo 11 del Real Decreto 39/1997</strong> y la Ley 31/1995. La hostelería no es una actividad de especial peligrosidad (no está en el Anexo I). Puedes asumir personalmente la gestión si tienes hasta 10 trabajadores (o hasta 25 si es un único local), trabajas habitualmente en él y cuentas con el curso básico de PRL (30h/50h).
+
+          </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+          <div class="faq-question">¿Y qué pasa con los reconocimientos médicos de mis camareros?</div>
+
+          <div class="faq-answer">
+
+            La ley exige que la <strong>Vigilancia de la Salud</strong> la preste obligatoriamente un Servicio de Prevención Ajeno (SPA) con médicos del trabajo acreditados. Con PrevHostel autogestionas toda la parte técnica (ahorrándote cientos de euros) y sólo necesitas contratar con un SPA un concierto parcial exclusivamente médico (mucho más económico).
+
+          </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+          <div class="faq-question">¿Qué pasa si mañana entra un Inspector de Trabajo a mi bar?</div>
+
+          <div class="faq-answer">
+
+            Tendrás en tu ordenador o impreso en barra el pack documental completo: la Evaluación de Riesgos firmada por ti como titular, el Plan de Medidas de Emergencia, el justificante de exención de auditoría y, lo más importante, el <strong>Libro de entrega de EPIs con las firmas digitales de tus empleados</strong>. Estarás mejor documentado que el 90% de los locales que pagan a un SPA y tienen los papeles caducados.
+
+          </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+          <div class="faq-question">¿Cuánto tiempo tardo en tener los papeles listos?</div>
+
+          <div class="faq-answer">
+
+            Aproximadamente 15 minutos. El sistema te hace preguntas muy simples sobre la maquinaria que tienes (freidora, cortadora, gas, cámaras frigoríficas, terraza) y genera automáticamente toda la documentación técnica sin tecnicismos innecesarios.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Final CTA -->
+
+  <section class="final-cta">
+
+    <div class="container">
+
+      <h2>No esperes a que un cocinero se queme para revisar tus papeles</h2>
+
+      <p>Blinda tu establecimiento hoy mismo y duerme tranquilo sabiendo que cumples con la ley ante cualquier inspección o siniestro.</p>
+
+      <a href="#precios" class="btn btn-primary" style="padding: 18px 42px; font-size: 1.1rem;">
+
+        Empezar la Autogestión de mi Bar Ahora →
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Footer -->
+
+  <footer>
+
+    <div class="container">
+
+      <p style="margin-bottom: 8px;"><strong>PrevHostel</strong> · Tecnología de autogestión técnica en prevención de riesgos laborales para el sector hostelero español.</p>
+
+      <p>Cumplimiento estricto conforme a la Ley 31/1995 de PRL y Real Decreto 39/1997. Todos los derechos reservados.</p>
+
+    </div>
+
+  </footer>
+
+
+
+</body>
+
+</html>
+
+Your HTML file is ready
+
+Icono de HTML
+index
+ HTML 
+Aquí tienes el código completo y listo para copiar y pegar directamente en GitHub.
+
+Modificaciones aplicadas
+Botón superior del menú: Cambiado a <a href="generador.html" class="btn btn-primary">Acceder al Generador</a>.
+
+Botón principal del banner central: Ahora apunta directamente a generador.html («Autogestionar mi Bar en 15 Minutos →»).
+
+Botones de los planes: Ambos llevan al usuario a generador.html.
+
+Nuevo bloque comercial de asistencia presencial: Añadida la sección «Asistencia Técnica Presencial · 60 € / hora + desplazamiento» con enlace directo a WhatsApp y enlace alternativo al generador.
+
+Botón final de llamada a la acción: Configurado con href="generador.html".
+
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -130,6 +2470,15 @@
     .btn-secondary:hover {
       border-color: var(--accent);
       background: var(--card-hover);
+    }
+    .btn-whatsapp {
+      background: #059669;
+      color: #fff;
+      border: 1px solid #10b981;
+    }
+    .btn-whatsapp:hover {
+      background: #10b981;
+      transform: translateY(-2px);
     }
 
     /* Hero Section */
@@ -415,7 +2764,7 @@
 
     /* Pricing Section */
     .pricing-section {
-      padding: 90px 0;
+      padding: 90px 0 60px;
     }
     .pricing-grid {
       display: grid;
@@ -493,6 +2842,70 @@
       flex-shrink: 0;
     }
 
+    /* Asistencia In Situ Section */
+    .insitu-section {
+      padding: 0 0 90px;
+    }
+    .insitu-banner {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(18, 22, 32, 0.95) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    .insitu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #93c5fd;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      width: fit-content;
+    }
+    .insitu-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .insitu-content p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .insitu-rate {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      color: #fbbf24;
+      font-weight: 800;
+      font-size: 1.4rem;
+      font-family: var(--font-heading);
+      margin: 8px 0;
+    }
+    .insitu-rate span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+    .insitu-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
     /* FAQ Section */
     .faq-section {
       padding: 80px 0;
@@ -510,7 +2923,6 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 22px 26px;
-      cursor: pointer;
       transition: border-color 0.2s;
     }
     .faq-item:hover {
@@ -583,9 +2995,10 @@
         <a href="#solucion">La Solución</a>
         <a href="#comparativa">Comparativa</a>
         <a href="#precios">Planes</a>
+        <a href="#asistencia">Servicio In Situ</a>
         <a href="#faq">Preguntas</a>
       </div>
-      <a href="#precios" class="btn btn-primary">Empezar Ahora</a>
+      <a href="generador.html" class="btn btn-primary">Acceder al Generador</a>
     </div>
   </nav>
 
@@ -600,7 +3013,7 @@
         Si un camarero se resbala o un cocinero se quema con la freidora, la Inspección de Trabajo y el Código Penal te investigarán a ti como titular. <strong>PrevHostel</strong> es la primera plataforma de autogestión guiada que blinda tu bar en 15 minutos, sin pagar 1.200 € al año a un SPA.
       </p>
       <div class="hero-cta-group">
-        <a href="#precios" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
+        <a href="generador.html" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
           Autogestionar mi Bar en 15 Minutos →
         </a>
         <a href="#urgencia" class="btn btn-secondary" style="padding: 16px 28px;">
@@ -809,7 +3222,7 @@
               <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Calendario de vencimientos de extintores y campana</li>
             </ul>
           </div>
-          <a href="#" class="btn btn-secondary" style="width: 100%;">Elegir Plan Micro</a>
+          <a href="generador.html" class="btn btn-secondary" style="width: 100%;">Comenzar en Generador</a>
         </div>
 
         <!-- Plan Pyme -->
@@ -826,7 +3239,33 @@
               <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Actualizaciones normativas automáticas todo el año</li>
             </ul>
           </div>
-          <a href="#" class="btn btn-primary" style="width: 100%;">Elegir Plan Pyme</a>
+          <a href="generador.html" class="btn btn-primary" style="width: 100%;">Comenzar en Generador</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Asistencia In Situ Section -->
+  <section class="insitu-section" id="asistencia">
+    <div class="container">
+      <div class="insitu-banner">
+        <span class="insitu-badge">🚀 Asistencia Técnica Presencial</span>
+        <div class="insitu-content">
+          <h3>¿Prefieres que vayamos a tu local a ayudarte?</h3>
+          <p>
+            Nos desplazamos directamente a tu restaurante, bar o cafetería para realizar la inspección técnica ocular de tus instalaciones (cocina, gas, campanas, freidoras, salidas de evacuación), ayudarte a completar todos los datos in situ y dejarte el expediente oficial de 11 documentos totalmente terminado y listo para su firma.
+          </p>
+          <div class="insitu-rate">
+            60 € / hora <span>+ gastos de desplazamiento</span>
+          </div>
+        </div>
+        <div class="insitu-actions">
+          <a href="https://wa.me/34600000000?text=Hola,%20deseo%20solicitar%20asistencia%20t%C3%A9cnica%20presencial%20para%20la%20PRL%20de%20mi%20local%20(tarifa:%2060%E2%82%AC/h%20+%20desplazamiento)." target="_blank" class="btn btn-whatsapp">
+            Solicitar Visita por WhatsApp →
+          </a>
+          <a href="generador.html" class="btn btn-secondary">
+            Ver Generador Técnico
+          </a>
         </div>
       </div>
     </div>
@@ -877,7 +3316,1007 @@
     <div class="container">
       <h2>No esperes a que un cocinero se queme para revisar tus papeles</h2>
       <p>Blinda tu establecimiento hoy mismo y duerme tranquilo sabiendo que cumples con la ley ante cualquier inspección o siniestro.</p>
-      <a href="#precios" class="btn btn-primary" style="padding: 18px 42px; font-size: 1.1rem;">
+      <a href="generador.html" class="btn btn-primary" style="padding: 18px 42px; font-size: 1.1rem;">
+        Empezar la Autogestión de mi Bar Ahora →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 8px;"><strong>PrevHostel</strong> · Tecnología de autogestión técnica en prevención de riesgos laborales para el sector hostelero español.</p>
+      <p>Cumplimiento estricto conforme a la Ley 31/1995 de PRL y Real Decreto 39/1997. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+
+
+Gemini es una IA y puede cometer errores, incluso sobre personas. Tu privacidad y GeminiSe abre en una ventana nueva
+
+Updating website code
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevHostel | Autogestión Legal de PRL para Bares y Restaurantes</title>
+  <meta name="description" content="Protege tu bar ante la Inspección de Trabajo. Software de autogestión de Prevención de Riesgos Laborales para hostelería conforme al Art. 11 del RD 39/1997.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: #121620;
+      --card-border: #1e2638;
+      --card-hover: #263147;
+      --accent: #2563eb;
+      --accent-glow: rgba(37, 99, 235, 0.35);
+      --accent-light: #60a5fa;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 11, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .logo-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+    }
+    .btn-whatsapp {
+      background: #059669;
+      color: #fff;
+      border: 1px solid #10b981;
+    }
+    .btn-whatsapp:hover {
+      background: #10b981;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(9, 11, 16, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3.1rem;
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span.gradient {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: 1.18rem;
+      color: var(--text-sub);
+      max-width: 780px;
+      margin: 0 auto 34px;
+      line-height: 1.7;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
+    .hero-badges span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-badges span svg {
+      color: var(--success);
+    }
+
+    /* Problem / Urgency Section (Cold Shower) */
+    .section-urgency {
+      padding: 70px 0;
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.04) 0%, rgba(9, 11, 16, 0) 100%);
+      border-top: 1px solid rgba(239, 68, 68, 0.15);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .section-title {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 50px;
+    }
+    .section-title .badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+      background: rgba(37, 99, 235, 0.12);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .section-title h2 {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-size: 1rem;
+    }
+
+    .myths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .myth-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 30px 24px;
+      position: relative;
+      transition: border-color 0.25s ease;
+    }
+    .myth-card:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+    .myth-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .myth-pill {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+    .myth-card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      color: #fca5a5;
+    }
+    .myth-card p.reality {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .reality-tag {
+      font-weight: 700;
+      color: var(--success);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    /* Features / The Solution */
+    .features-section {
+      padding: 90px 0;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px 30px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .feature-points {
+      margin-top: 16px;
+      list-style: none;
+    }
+    .feature-points li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .feature-points li svg {
+      color: var(--accent-light);
+      flex-shrink: 0;
+    }
+
+    /* Comparison Table */
+    .compare-section {
+      padding: 80px 0;
+      background: #0d1017;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .compare-table th, .compare-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.92rem;
+    }
+    .compare-table th {
+      background: #161b26;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .compare-table th.highlight {
+      background: rgba(37, 99, 235, 0.2);
+      color: #93c5fd;
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+    .compare-table td.highlight {
+      background: rgba(37, 99, 235, 0.05);
+      border-left: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+      font-weight: 600;
+      color: #93c5fd;
+    }
+    .status-check { color: var(--success); font-weight: 700; }
+    .status-cross { color: var(--danger); font-weight: 700; }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 90px 0 60px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 40px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
+    }
+    .pricing-card.featured::before {
+      content: 'MÁS POPULAR · CENTRO ÚNICO';
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+    .pricing-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+    }
+    .pricing-card p.desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 8px 0 24px;
+    }
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      margin-bottom: 6px;
+    }
+    .pricing-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 28px 0 34px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .pricing-features li svg {
+      color: var(--success);
+      flex-shrink: 0;
+    }
+
+    /* Asistencia In Situ Banner */
+    .insitu-section {
+      padding: 0 0 90px;
+    }
+    .insitu-banner {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(18, 22, 32, 0.95) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    .insitu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #93c5fd;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      width: fit-content;
+    }
+    .insitu-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .insitu-content p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .insitu-rate {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      color: #fbbf24;
+      font-weight: 800;
+      font-size: 1.4rem;
+      font-family: var(--font-heading);
+      margin: 8px 0;
+    }
+    .insitu-rate span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+    .insitu-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--card-border);
+    }
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover {
+      border-color: var(--card-hover);
+    }
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 90px 0;
+      background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.2) 0%, rgba(9, 11, 16, 1) 70%);
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      color: var(--text-sub);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 36px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0 30px;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      text-align: center;
+    }
+    footer a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 2.3rem; }
+      .myths-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        PrevHostel <span class="logo-badge">Hostelería 100% Legal</span>
+      </a>
+      <div class="nav-links">
+        <a href="#urgencia">¿Por qué tú?</a>
+        <a href="#solucion">La Solución</a>
+        <a href="#comparativa">Comparativa</a>
+        <a href="#precios">Planes</a>
+        <a href="#asistencia">Servicio In Situ</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <a href="generador.html" class="btn btn-primary">Acceder al Generador</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-tag">
+        ⚠️ Aviso Legal Inmediato (Art. 11 RD 39/1997)
+      </div>
+      <h1>El responsable penal de la PRL en tu bar <span class="gradient">eres TÚ</span>. No tu gestoría.</h1>
+      <p class="lead">
+        Si un camarero se resbala o un cocinero se quema con la freidora, la Inspección de Trabajo y el Código Penal te investigarán a ti como titular. <strong>PrevHostel</strong> es la primera plataforma de autogestión guiada que blinda tu bar en 15 minutos, sin pagar 1.200 € al año a un SPA.
+      </p>
+      <div class="hero-cta-group">
+        <a href="generador.html" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
+          Autogestionar mi Bar en 15 Minutos →
+        </a>
+        <a href="#urgencia" class="btn btn-secondary" style="padding: 16px 28px;">
+          Ver Qué Exige la Inspección
+        </a>
+      </div>
+      <div class="hero-badges">
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Hasta 25 trabajadores (Centro único)
+        </span>
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Notificación formal de exención de auditoría
+        </span>
+        <span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Firma táctil de EPIs en móvil
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Reality Check (The Need Creator) -->
+  <section class="section-urgency" id="urgencia">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Realidad Inspectora</span>
+        <h2>Las 3 falsas seguridades que le cuestan el negocio a un hostelero</h2>
+        <p>El 87% de los bares y restaurantes sancionados creían que "lo tenían todo cubierto". La realidad jurídica es tajante:</p>
+      </div>
+
+      <div class="myths-grid">
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #1</span>
+          </div>
+          <h3>"Mi gestoría laboral me lleva todos los papeles"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            Las gestorías gestionan nóminas e impuestos, pero <strong>no son un Servicio de Prevención</strong>. La Ley de Prevención (LPRL) prohíbe que un gestor asuma tu seguridad laboral. Si hay una inspección, tu gestoría no responde: la multa recae sobre tu CIF y tu patrimonio personal.
+          </p>
+        </div>
+
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #2</span>
+          </div>
+          <h3>"Firmé un contrato con un SPA hace años y ya está"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            Tener una carpeta olvidada en el despacho no te salva. Si no demuestras la <strong>entrega física y firmada de EPIs</strong> a cada trabajador que entra, o si cambiaste de freidora o máquina y no actualizaste el documento, la Inspección lo considera <em>infracción grave</em> (desde 2.451 € a 49.180 €).
+          </p>
+        </div>
+
+        <div class="myth-card">
+          <div class="myth-header">
+            <span class="myth-pill">Error Fatal #3</span>
+          </div>
+          <h3>"Un bar pequeño no tiene derecho a autogestionarse"</h3>
+          <p class="reality">
+            <span class="reality-tag">La Ley:</span>
+            <strong>Es totalmente falso.</strong> El Real Decreto 39/1997 faculta al empresario con curso básico a asumir personalmente la prevención hasta 25 empleados en centro único. Los SPAs tradicionales te cobran cuotas anuales desorbitadas por un documento estándar que tú mismo puedes autogestionar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Solution -->
+  <section class="features-section" id="solucion">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Autogestión Completa</span>
+        <h2>Todo lo que exige la Inspección de Trabajo en un solo lugar</h2>
+        <p>PrevHostel guía al titular paso a paso para generar, firmar y mantener en regla su sistema preventivo sin intermediarios costosos.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Evaluación EVL y Medidas de Emergencia (INSST)</h3>
+          <p>Cuestionario guiado por equipamiento real de cocina (freidoras, planchas, cortadoras, gas, campanas). Matriz técnica de riesgos P×G y medidas concretas conforme a los estándares oficiales del Instituto Nacional de Seguridad y Salud en el Trabajo.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Redacción en primera persona bajo asunción legal del titular.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Plan de emergencias, vías de evacuación y conato en cocina.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3>Libro Digital de EPIs con Firma Táctil en Móvil</h3>
+          <p>El punto flaco de cualquier bar ante una inspección es la falta de recibos de EPIs. PrevHostel te permite elegir al trabajador y que firme con el dedo en la pantalla la entrega del calzado antideslizante o guantes térmicos al instante.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Firma manuscrita digitalizada con fecha y hora exacta.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Impresión en 1 clic del Libro Oficial de Entrega de EPIs.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Coordinación CAE para Reparto y Técnicos (QR)</h3>
+          <p>Si el repartidor de barriles de cerveza o el técnico que limpia la campana extractora sufren un accidente en tu local, tienes responsabilidad civil subsidiaria salvo que acredites la Coordinación de Actividades Empresariales (Art. 24 LPRL).</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Ficha A4 para fijar en barra o zona de descarga con código QR.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Exención de responsabilidad por imprudencia de terceros.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3>Trámite Oficial: Exención de Auditoría ante la CCAA</h3>
+          <p>Las empresas que autogestionan la PRL están obligadas a notificar formalmente la exención de auditoría a la Dirección General de Trabajo de su Comunidad Autónoma. PrevHostel genera la solicitud administrativa redactada lista para registro.</p>
+          <ul class="feature-points">
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Fundamentada en el Art. 29 y Anexo II del RD 39/1997.</li>
+            <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Evita la sanción por carecer de auditoría periódica obligatoria.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="compare-section" id="comparativa">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Comparativa Real</span>
+        <h2>¿Por qué seguir atado a un Servicio de Prevención tradicional?</h2>
+        <p>Compara el modelo obsoleto de los grandes SPAs frente a la autogestión legal moderna.</p>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Característica / Obligación</th>
+              <th>SPA Tradicional</th>
+              <th>No hacer nada (Riesgo)</th>
+              <th class="highlight">PrevHostel (Autogestión)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coste anual aproximado</td>
+              <td>800 € – 1.400 € / año</td>
+              <td>0 € (hasta la multa de 40.000 €)</td>
+              <td class="highlight"><strong>Desde 79 € / año</strong></td>
+            </tr>
+            <tr>
+              <td>Validez legal ante la ITSS</td>
+              <td><span class="status-check">✓ Sí</span></td>
+              <td><span class="status-cross">✗ Ilegal</span></td>
+              <td class="highlight"><span class="status-check">✓ 100% Legal (Art. 11 RD 39/97)</span></td>
+            </tr>
+            <tr>
+              <td>Firma de EPIs en tiempo real con camareros</td>
+              <td><span class="status-cross">✗ En papel perdido</span></td>
+              <td><span class="status-cross">✗ Inexistente</span></td>
+              <td class="highlight"><span class="status-check">✓ En pantalla móvil al instante</span></td>
+            </tr>
+            <tr>
+              <td>Ficha CAE para repartidores de cerveza/fresco</td>
+              <td><span class="status-cross">✗ Te cobran extra</span></td>
+              <td><span class="status-cross">✗ Inexistente</span></td>
+              <td class="highlight"><span class="status-check">✓ Incluida con cartel y QR</span></td>
+            </tr>
+            <tr>
+              <td>Notificación de exención de auditoría redactada</td>
+              <td><span class="status-cross">✗ Rara vez la tramitan</span></td>
+              <td><span class="status-cross">✗ Sanción grave</span></td>
+              <td class="highlight"><span class="status-check">✓ Redactada lista para sede electrónica</span></td>
+            </tr>
+            <tr>
+              <td>Tiempo necesario del hostelero</td>
+              <td>Soportar visitas lentas y papeles</td>
+              <td>0 min (hasta el juzgado)</td>
+              <td class="highlight"><strong>15 minutos desde el móvil</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="precios">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Inversión Mínima</span>
+        <h2>Un año de tranquilidad legal por menos de lo que cuesta una cena</h2>
+        <p>Sin permanencias ocultas. Acceso inmediato a la plataforma para generar tu pack hoy mismo.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan Micro -->
+        <div class="pricing-card">
+          <div>
+            <h3>Microhostelería</h3>
+            <p class="desc">Para bares, cafeterías y pequeños locales con menos de 10 trabajadores.</p>
+            <div class="pricing-price">79 € <span>/ año</span></div>
+            <ul class="pricing-features">
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Generador EVL oficial y Emergencias</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Libro Digital de EPIs con firma en pantalla</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cartelería y ficha CAE para repartidores</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Notificación oficial exención de auditoría</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Calendario de vencimientos de extintores y campana</li>
+            </ul>
+          </div>
+          <a href="generador.html" class="btn btn-secondary" style="width: 100%;">Comenzar en Generador</a>
+        </div>
+
+        <!-- Plan Pyme -->
+        <div class="pricing-card featured">
+          <div>
+            <h3>Pyme Hostelería</h3>
+            <p class="desc">Para restaurantes, asadores o locales con entre 10 y 25 empleados en centro único.</p>
+            <div class="pricing-price">129 € <span>/ año</span></div>
+            <ul class="pricing-features">
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> <strong>Todo lo del Plan Micro incluido</strong></li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Habilitado legalmente hasta 25 empleados (Art. 11)</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Módulo de turnos rotativos, noche y picos de servicio</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Plan de formación teórica específica por puesto (Art. 19)</li>
+              <li><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Actualizaciones normativas automáticas todo el año</li>
+            </ul>
+          </div>
+          <a href="generador.html" class="btn btn-primary" style="width: 100%;">Comenzar en Generador</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Asistencia In Situ Section -->
+  <section class="insitu-section" id="asistencia">
+    <div class="container">
+      <div class="insitu-banner">
+        <span class="insitu-badge">🚀 Asistencia Técnica Presencial</span>
+        <div class="insitu-content">
+          <h3>¿Prefieres que vayamos a tu local a ayudarte?</h3>
+          <p>
+            Nos desplazamos directamente a tu restaurante, bar o cafetería para realizar la inspección técnica ocular de tus instalaciones (cocina, gas, campanas, freidoras, salidas de evacuación), ayudarte a completar todos los datos in situ y dejarte el expediente oficial de 11 documentos totalmente terminado y listo para su firma.
+          </p>
+          <div class="insitu-rate">
+            60 € / hora <span>+ gastos de desplazamiento</span>
+          </div>
+        </div>
+        <div class="insitu-actions">
+          <a href="https://wa.me/34600000000?text=Hola,%20deseo%20solicitar%20asistencia%20t%C3%A9cnica%20presencial%20para%20la%20PRL%20de%20mi%20local%20(tarifa:%2060%E2%82%AC/h%20+%20desplazamiento)." target="_blank" class="btn btn-whatsapp">
+            Solicitar Visita por WhatsApp →
+          </a>
+          <a href="generador.html" class="btn btn-secondary">
+            Ver Generador Técnico
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <span class="badge">Respuestas Claras</span>
+        <h2>Preguntas Frecuentes de Hosteleros</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">¿Es 100% legal que yo me haga mi propia prevención de riesgos?</div>
+          <div class="faq-answer">
+            Sí, con total respaldo del <strong>artículo 11 del Real Decreto 39/1997</strong> y la Ley 31/1995. La hostelería no es una actividad de especial peligrosidad (no está en el Anexo I). Puedes asumir personalmente la gestión si tienes hasta 10 trabajadores (o hasta 25 si es un único local), trabajas habitualmente en él y cuentas con el curso básico de PRL (30h/50h).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Y qué pasa con los reconocimientos médicos de mis camareros?</div>
+          <div class="faq-answer">
+            La ley exige que la <strong>Vigilancia de la Salud</strong> la preste obligatoriamente un Servicio de Prevención Ajeno (SPA) con médicos del trabajo acreditados. Con PrevHostel autogestionas toda la parte técnica (ahorrándote cientos de euros) y sólo necesitas contratar con un SPA un concierto parcial exclusivamente médico (mucho más económico).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Qué pasa si mañana entra un Inspector de Trabajo a mi bar?</div>
+          <div class="faq-answer">
+            Tendrás en tu ordenador o impreso en barra el pack documental completo: la Evaluación de Riesgos firmada por ti como titular, el Plan de Medidas de Emergencia, el justificante de exención de auditoría y, lo más importante, el <strong>Libro de entrega de EPIs con las firmas digitales de tus empleados</strong>. Estarás mejor documentado que el 90% de los locales que pagan a un SPA y tienen los papeles caducados.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">¿Cuánto tiempo tardo en tener los papeles listos?</div>
+          <div class="faq-answer">
+            Aproximadamente 15 minutos. El sistema te hace preguntas muy simples sobre la maquinaria que tienes (freidora, cortadora, gas, cámaras frigoríficas, terraza) y genera automáticamente toda la documentación técnica sin tecnicismos innecesarios.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>No esperes a que un cocinero se queme para revisar tus papeles</h2>
+      <p>Blinda tu establecimiento hoy mismo y duerme tranquilo sabiendo que cumples con la ley ante cualquier inspección o siniestro.</p>
+      <a href="generador.html" class="btn btn-primary" style="padding: 18px 42px; font-size: 1.1rem;">
         Empezar la Autogestión de mi Bar Ahora →
       </a>
     </div>
